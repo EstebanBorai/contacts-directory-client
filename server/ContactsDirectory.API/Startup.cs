@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ContactsDirectory.Core;
 using ContactsDirectory.Entity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,12 +29,11 @@ namespace ContactsDirectory.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<ContactsDirectoryContext>(options => 
-            {
-                options.UseSqlite(
-                    Configuration.GetSection("Database").GetValue<string>("ConnectionString"),
-                    b => b.MigrationsAssembly("ContactsDirectory.Entity"));
-            });
+            services.AddDbContext<ContactsDirectoryContext>(options =>
+                options.UseSqlite(Configuration.GetSection("Database").GetValue<string>("ConnectionString"),
+                    builder => builder.MigrationsAssembly("ContactsDirectory.API"))
+                );
+            services.AddScoped<IDataSource>(ds => new ContactsDirectoryDataSource(ds.GetRequiredService<ContactsDirectoryContext>()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
