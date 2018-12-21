@@ -8,6 +8,4 @@ Use .NET Core to create a WebAPI.
 ContactsDirectory app uses a client made with React.js with a server made with .NETCore which connects to a SQLite database.
 The client side interacts with the server through HTTP requests and renders the UI based on the received data.
 
-![ContactsDirectory Architecture](https://raw.githubusercontent.com/estebanborai/contacts-directory-netcore/master/docs/architecture_ diagram.png)
-
-## API
+![ContactsDirectory Architecture](https://raw.githubusercontent.com/estebanborai/contacts-directory-netcore/master/docs/architecture_diagram.png)
