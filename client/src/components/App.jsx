@@ -1,5 +1,12 @@
 import React from 'react';
+import Header from 'components/Header';
+import Contacts from 'components/Contacts';
 
-const App = () => <div>Hello</div>;
+const App = () => (
+  <React.Fragment>
+    <Header />
+    <Contacts />
+  </React.Fragment>
+);
 
 export default App;

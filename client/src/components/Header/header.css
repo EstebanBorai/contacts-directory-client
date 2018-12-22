@@ -1,0 +1,11 @@
+#app-header {
+  background: #525252;
+  text-align: center;
+  padding: .4rem .8rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.5rem !important;
+  color: #ffffff;
+}

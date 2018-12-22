@@ -1,0 +1,15 @@
+.search-bar {
+  padding: .8rem .4rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 45% 45%;
+  gap: 0 5%;
+  width: 100%;
+}
+
+.search-hidden {
+  background: #dddddd;
+  color: #333333;
+  padding: .5rem;
+  box-sizing: border-box;
+}
