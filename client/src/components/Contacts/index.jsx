@@ -1,11 +1,19 @@
 import React from 'react';
-import Search from './Search';
+import ToolsBar from './ToolsBar';
+import SearchBar from './SearchBar';
 import Navigation from './Navigation';
+import CreateContactModal from './CreateContactModal';
+
+const options = [
+  { key: 'i', text: 'IT', value: 'IT' },
+  { key: 'r', text: 'Human Resources', value: 'RRHH' }
+];
 
 class Contacts extends React.Component {
   state = {
     section: 'home',
-    isHidden: true
+    isSearching: false,
+    isCreating: false
   }
 
   setSection = (e, { name }) => {
@@ -14,11 +22,28 @@ class Contacts extends React.Component {
     });
   }
 
+  toggleToolsBar = () => {
+    this.setState({
+      isSearching: !this.state.isSearching
+    });
+  }
+
+  openCreateModal = () => this.setState({ isCreating: true });
+  closeCreateModal = () => this.setState({ isCreating: false });
+
   render() {
-    const { section, isHidden } = this.state;
+    const { section, isSearching, isCreating } = this.state;
     return (
       <section>
-        <Search hide={isHidden} />
+        <CreateContactModal 
+          isOpen={isCreating} 
+          closeCreateModal={this.closeCreateModal} 
+        />
+        <ToolsBar
+          toggleToolsBar={this.toggleToolsBar} 
+          openCreateModal={this.openCreateModal} 
+        />
+        <SearchBar isSearching={isSearching} options={options} />
         <Navigation 
           onNavigate={this.setSection} 
           activeItem={section}

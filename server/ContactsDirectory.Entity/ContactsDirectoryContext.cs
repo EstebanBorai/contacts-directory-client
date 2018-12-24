@@ -22,7 +22,7 @@ namespace ContactsDirectory.Entity
                 .HasMaxLength(100);
             contact.Property(c => c.LastName)
                 .HasMaxLength(100);
-            contact.Property(c => c.Company)
+            contact.Property(c => c.Department)
                 .HasMaxLength(100);
             contact.Property(c => c.Avatar)
                 .HasMaxLength(200);
