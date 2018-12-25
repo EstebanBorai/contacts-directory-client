@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactsDirectory.API.Migrations
 {
     [DbContext(typeof(ContactsDirectoryContext))]
-    [Migration("20181221020224_Initial")]
-    partial class Initial
+    [Migration("20181225202101_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,7 +26,7 @@ namespace ContactsDirectory.API.Migrations
                     b.Property<string>("Avatar")
                         .HasMaxLength(200);
 
-                    b.Property<string>("Company")
+                    b.Property<string>("Department")
                         .HasMaxLength(100);
 
                     b.Property<string>("FirstName")

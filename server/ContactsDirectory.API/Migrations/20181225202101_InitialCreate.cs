@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContactsDirectory.API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace ContactsDirectory.API.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     FirstName = table.Column<string>(maxLength: 100, nullable: true),
                     LastName = table.Column<string>(maxLength: 100, nullable: true),
-                    Company = table.Column<string>(maxLength: 100, nullable: true),
+                    Department = table.Column<string>(maxLength: 100, nullable: true),
                     Avatar = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>

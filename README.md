@@ -14,3 +14,13 @@ The client side interacts with the server through HTTP requests and renders the 
     alt="contacts directory architecture"
   />
 </p>
+
+## API
+API documentation is made with Swagger. You can use it following these steps:
+Run:
+```bash
+dotnet run ./server/ContactsDirectory.API
+```
+Then open one of the following links in your browser:
+- HTTPS: https://localhost:5001/swagger/index.html
+- HTTP: http://localhost:5000/swagger/index.html

@@ -24,7 +24,7 @@ namespace ContactsDirectory.API.Migrations
                     b.Property<string>("Avatar")
                         .HasMaxLength(200);
 
-                    b.Property<string>("Company")
+                    b.Property<string>("Department")
                         .HasMaxLength(100);
 
                     b.Property<string>("FirstName")

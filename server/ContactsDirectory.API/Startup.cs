@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ContactsDirectory.API
 {
@@ -29,12 +30,35 @@ namespace ContactsDirectory.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+
             services.AddDbContext<ContactsDirectoryContext>(options =>
                 options.UseSqlite(Configuration.GetSection("Database").GetValue<string>("ConnectionString"),
                     builder => builder.MigrationsAssembly("ContactsDirectory.API"))
                 );
             services.AddScoped<IDataSource>(ds => new ContactsDirectoryDataSource(ds.GetRequiredService<ContactsDirectoryContext>()));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info {
+                    Version = "v1",
+                    Title = "Contacts Directory API",
+                    Description = "Contacts Directory API made with .NET Core",
+                    TermsOfService = "None",
+                    Contact = new Swashbuckle.AspNetCore.Swagger.Contact
+                    {
+                        Name = "Esteban Borai",
+                        Email = string.Empty,
+                        Url = "https://github.com/estebanborai"
+                    },
+                    License = new License
+                    {
+                        Name = "Use under MIT License",
+                        Url = "https://opensource.org/licenses/MIT"
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +76,13 @@ namespace ContactsDirectory.API
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contacts Directory API V1");
+            });
+
             app.UseMvc();
         }
     }
