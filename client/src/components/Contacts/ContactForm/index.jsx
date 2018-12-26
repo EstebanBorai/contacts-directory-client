@@ -13,7 +13,8 @@ class ContactForm extends React.Component {
       lastName: '',
       department: '',
       slots: [],
-      dates: []
+      dates: [],
+      avatar: null
     }
   };
 
@@ -41,12 +42,31 @@ class ContactForm extends React.Component {
 
     this.setState(next);
   }
+  
+  handleFileLoad = e => {
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (e) => {
+      const next = {
+        ...this.state, form: {
+          ...this.state.form, avatar: fileReader.result
+        }
+      };
+      this.setState(next);
+    };
+  }
 
   render() {
     const { isAddingField, isAddingAvatar, form } = this.state;
     return (
       <React.Fragment>
-      <AddAvatarModal isOpen={isAddingAvatar} onClose={this.closeAddingAvatar} />
+      <AddAvatarModal 
+        isOpen={isAddingAvatar} 
+        onClose={this.closeAddingAvatar}
+        handleFileLoad={this.handleFileLoad}
+        avatar={form.avatar}
+      />
       <Form>
         <Form.Input 
           name="firstName"
