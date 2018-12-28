@@ -1,3 +1,37 @@
-.add-avatar-modal img {
+.form-header {
+  width: 100%;
+  text-align: center;
+  padding: .4rem 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-avatar-container {
+  height: 120px;
+  width: 120px;
+  border-radius: 100px;
+  border: .2rem solid #525252;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-avatar-container img {
+  display: inline-block;
+  width: 100%;
+  margin: auto;
+}
+
+.avatar-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.avatar-modal-container img {
   width: 350px;
 }

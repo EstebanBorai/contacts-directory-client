@@ -1,4 +1,5 @@
 import React from 'react';
+import './contact-form.css';
 import { Form, Button, Divider } from 'semantic-ui-react';
 import Slots from './Slots';
 import AddAvatarModal from './AddAvatarModal';
@@ -57,6 +58,17 @@ class ContactForm extends React.Component {
     };
   }
 
+  discardAvatarUpdate = () => {
+    const next = {
+      ...this.state, 
+        isAddingAvatar: false,
+        form: {
+          ...this.state.form, avatar: null
+        }
+    };
+    this.setState(next);
+  }
+
   render() {
     const { isAddingField, isAddingAvatar, form } = this.state;
     return (
@@ -66,8 +78,18 @@ class ContactForm extends React.Component {
         onClose={this.closeAddingAvatar}
         handleFileLoad={this.handleFileLoad}
         avatar={form.avatar}
+        onDiscard={this.discardAvatarUpdate}
       />
       <Form>
+        <header className="form-header">
+          <div className="form-avatar-container">
+            {   
+              form.avatar ?
+              <img src={form.avatar} /> :
+              null
+            }
+          </div>
+        </header>
         <Form.Input 
           name="firstName"
           label="First Name" 
