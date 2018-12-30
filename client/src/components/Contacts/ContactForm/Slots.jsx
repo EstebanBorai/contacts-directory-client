@@ -32,7 +32,7 @@ class Slots extends React.Component {
     const { fieldType, customName, value } = this.state; 
     const { onSelect } = this.props;
     return (
-      <React.Fragment>
+      <div>
         <Form.Select
           fluid
           label="Field Type"
@@ -57,7 +57,7 @@ class Slots extends React.Component {
           onChange={this.handleOnChange}
         />
         <Button onClick={onSelect.bind(null, { type: fieldType, customName, value  })}>Add Field</Button>
-      </React.Fragment>
+      </div>
     );
   }
 }
