@@ -30,11 +30,19 @@ class ContactForm extends React.Component {
     });
   };
 
+  /**
+   * Appends a `slot` object to the collection of slots.
+   * 
+   * @param {Object} slot - Slot properties.
+   * @param {number} slot.type - The slot type.
+   * @param {string} slot.customName - Slot name.
+   * @param {string} slot.value - Slot value.
+   */
   addSlot = ({ type, customName, value }) => {
     const next = { 
       ...this.state, form: { 
         ...this.state.form, slots: [ 
-          ...this.state.form.slots, { 
+          ...this.state.form.slots, {
             type, customName, value 
           } 
         ] 
@@ -72,7 +80,7 @@ class ContactForm extends React.Component {
   render() {
     const { isAddingField, isAddingAvatar, form } = this.state;
     return (
-      <React.Fragment>
+      <div>
       <AddAvatarModal 
         isOpen={isAddingAvatar} 
         onClose={this.closeAddingAvatar}
@@ -122,7 +130,7 @@ class ContactForm extends React.Component {
           { isAddingField ? 'Cancel Adding Field' : 'Add Field' }
         </Button>
       </Form>
-      </React.Fragment>
+      </div>
     );
   }
 }
