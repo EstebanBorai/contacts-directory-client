@@ -126,9 +126,11 @@ class ContactForm extends React.Component {
           <Slots onSelect={this.addSlot} /> :
           null
         }
-        <Button onClick={this.toggleAddingField}>
-          { isAddingField ? 'Cancel Adding Field' : 'Add Field' }
-        </Button>
+        <div className="field-options-container">
+          <Button onClick={this.toggleAddingField}>
+            { isAddingField ? 'Cancel Adding Field' : 'Add Field' }
+          </Button>
+        </div>
       </Form>
       </div>
     );

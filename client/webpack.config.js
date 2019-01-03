@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DefinePlugin = require('webpack').DefinePlugin;
 
-module.exports = {
+module.exports = (env, args) => ({
   entry: './src/index.js',
   output: {
     filename: 'index.js',
@@ -48,12 +49,19 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Contacts Directory',
       template: 'src/index.hbs'
+    }),
+    new DefinePlugin({
+      API_URL:
+        args.mode === 'development'
+          ? JSON.stringify('https://localhost:5001/api/')
+          : ''
     })
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
+      api: path.resolve(__dirname, 'src/api'),
       components: path.resolve(__dirname, 'src/components')
     }
   }
-};
+});

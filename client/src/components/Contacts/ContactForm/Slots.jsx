@@ -56,7 +56,9 @@ class Slots extends React.Component {
           type="text" 
           onChange={this.handleOnChange}
         />
-        <Button onClick={onSelect.bind(null, { type: fieldType, customName, value  })}>Add Field</Button>
+        <Button onClick={onSelect.bind(null, { type: fieldType, customName, value  })}>
+          Confirm
+        </Button>
       </div>
     );
   }

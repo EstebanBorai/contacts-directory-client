@@ -35,3 +35,8 @@
 .avatar-modal-container img {
   width: 350px;
 }
+
+.field-options-container {
+  padding: .5rem .5rem .5rem 0;
+  box-sizing: border-box;
+}
