@@ -1,17 +1,6 @@
 import React from 'react';
-import { Form, Button } from 'semantic-ui-react';
-
-const slotTypes = [
-  { key: 1, text: 'Mobile', value: 1 },
-  { key: 2, text: 'Work', value: 2 },
-  { key: 3, text: 'Home', value: 3 },
-  { key: 4, text: 'Main', value: 4 },
-  { key: 5, text: 'Work Fax', value: 5 },
-  { key: 6, text: 'Home Fax', value: 6 },
-  { key: 7, text: 'Pager', value: 7 },
-  { key: 8, text: 'Other', value: 8 },
-  { key: 9, text: 'Custom', value: 9 }
-];
+import { Form, Button, Divider } from 'semantic-ui-react';
+import { slotTypes } from './constants';
 
 class Slots extends React.Component {
   state = {
@@ -30,7 +19,7 @@ class Slots extends React.Component {
 
   render() {
     const { fieldType, customName, value } = this.state; 
-    const { onSelect } = this.props;
+    const { onSelect, onCancel } = this.props;
     return (
       <div>
         <Form.Select
@@ -56,9 +45,18 @@ class Slots extends React.Component {
           type="text" 
           onChange={this.handleOnChange}
         />
-        <Button onClick={onSelect.bind(null, { type: fieldType, customName, value  })}>
+        <Button 
+          primary
+          onClick={onSelect.bind(null, { type: fieldType, customName, value  })}
+        >
           Confirm
         </Button>
+        <Button
+          onClick={onCancel}
+        >
+          Cancel
+        </Button>
+        <Divider />
       </div>
     );
   }

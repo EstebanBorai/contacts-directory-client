@@ -19,6 +19,12 @@
   align-items: center;
 }
 
+.form-avatar-container:hover {
+  background: #525252;
+  transition: .3s;
+  cursor: pointer;
+}
+
 .form-avatar-container img {
   display: inline-block;
   width: 100%;

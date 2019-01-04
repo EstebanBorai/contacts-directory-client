@@ -3,12 +3,14 @@ import './contact-form.css';
 import { Form, Button, Divider } from 'semantic-ui-react';
 import Slots from './Slots';
 import AddAvatarModal from './AddAvatarModal';
+import Dates from './Dates';
 
 class ContactForm extends React.Component {
   state = {
     isAddingField: false,
     isCustomField: false,
     isAddingAvatar: false,
+    isAddingDate: false,
     form: {
       firstName: '',
       lastName: '',
@@ -20,6 +22,7 @@ class ContactForm extends React.Component {
   };
 
   toggleAddingField = () => this.setState({ isAddingField: !this.state.isAddingField });
+  toggleAddingDate = () => this.setState({ isAddingDate: !this.state.isAddingDate });
 
   openAddingAvatar = () => this.setState({ isAddingAvatar: true });
   closeAddingAvatar = () => this.setState({ isAddingAvatar: false });
@@ -51,6 +54,29 @@ class ContactForm extends React.Component {
 
     this.setState(next);
   }
+
+  /**
+   * Appends a `date` object to the collection of dates.
+   * 
+   * @param {Object} date - Date.
+   * @param {number} date.day - Day of the month.
+   * @param {number} date.month - Month number.
+   * @param {number} date.year - Year.
+   */
+  addDate = ({ day, month, year }) => {
+    const next = {
+      ...this.state, form: {
+        ...this.state.form, dates: [
+          ...this.state.form.dates, {
+            day: Number(day), 
+            month,
+            year: Number(year)
+          }
+        ]
+      }
+    }
+    this.setState(next);
+  }
   
   handleFileLoad = e => {
     const file = e.target.files[0];
@@ -78,7 +104,7 @@ class ContactForm extends React.Component {
   }
 
   render() {
-    const { isAddingField, isAddingAvatar, form } = this.state;
+    const { isAddingField, isAddingAvatar, isAddingDate, form } = this.state;
     return (
       <div>
       <AddAvatarModal 
@@ -90,7 +116,10 @@ class ContactForm extends React.Component {
       />
       <Form>
         <header className="form-header">
-          <div className="form-avatar-container">
+          <div 
+            className="form-avatar-container" 
+            onClick={this.openAddingAvatar}
+          >
             {   
               form.avatar ?
               <img src={form.avatar} /> :
@@ -119,17 +148,38 @@ class ContactForm extends React.Component {
           onChange={this.handleChange}
           value={form.department}
         />
-        <Button onClick={this.openAddingAvatar}>Avatar</Button>
         <Divider />
         {
           isAddingField ?
-          <Slots onSelect={this.addSlot} /> :
+          <Slots 
+            onSelect={this.addSlot} 
+            onCancel={this.toggleAddingField} 
+          /> :
+          null
+        }
+        {
+          isAddingDate ?
+          <Dates 
+            onSelect={this.addDate} 
+            onCancel={this.toggleAddingDate}
+          /> :
           null
         }
         <div className="field-options-container">
-          <Button onClick={this.toggleAddingField}>
-            { isAddingField ? 'Cancel Adding Field' : 'Add Field' }
-          </Button>
+          {
+            isAddingField ? 
+              null : 
+              <Button onClick={this.toggleAddingField}>
+                Add Field
+              </Button>
+          }
+          {
+            isAddingDate ?
+            null :
+            <Button onClick={this.toggleAddingDate}>
+              Add Date
+            </Button>
+          }
         </div>
       </Form>
       </div>
