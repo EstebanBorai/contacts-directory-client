@@ -12,7 +12,7 @@ const options = [
 
 class Contacts extends React.Component {
   state = {
-    section: 'home',
+    section: 'favorites',
     isSearching: false,
     isCreating: false
   }

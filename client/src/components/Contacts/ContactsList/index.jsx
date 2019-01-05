@@ -1,5 +1,8 @@
 import React from 'react';
 import ContactsContext from 'contexts/ContactsContext';
+import { Message, Card } from 'semantic-ui-react';
+import './contacts-list.css';
+import ContactCard from './ContactCard';
 
 class ContactsList extends React.Component {
   static contextType = ContactsContext.Consumer;
@@ -14,18 +17,24 @@ class ContactsList extends React.Component {
 
   render() {
     return (
-      <ul>
+      <section id="contacts-list">
         <h1>All Contacts</h1>
         <ContactsContext.Consumer>
           {
-            ctx => ctx.state.contacts && ctx.state.contacts.map((c, i) => (
-              <li key={i}>
-                {JSON.stringify(c)}
-              </li>
-            ))
+            ctx => ctx.state.contacts && ctx.state.contacts.length > 0 ? 
+              <Card.Group centered>
+              {
+                ctx.state.contacts.map((contact, index) => (
+                  <ContactCard key={index} contact={contact} />
+                ))
+              }
+              </Card.Group> :
+              <Message>
+                There's no contacts to show
+              </Message>
           }
         </ContactsContext.Consumer>
-      </ul>
+      </section>
     );
   }
 }

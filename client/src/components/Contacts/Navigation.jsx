@@ -6,13 +6,13 @@ const Navigation = ({ onNavigate, activeItem }) => {
   return (
     <Menu pointing secondary>
       <Menu.Item
-        name="home"
-        active={activeItem === 'home'}
+        name="favorites"
+        active={activeItem === 'favorites'}
         onClick={onNavigate}
       />
       <Menu.Item
-        name="favorites"
-        active={activeItem === 'favorites'}
+        name="all"
+        active={activeItem === 'all'}
         onClick={onNavigate}
       />
     </Menu>
