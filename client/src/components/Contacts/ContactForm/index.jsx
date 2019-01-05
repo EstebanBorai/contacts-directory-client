@@ -4,6 +4,7 @@ import { Form, Button, Divider } from 'semantic-ui-react';
 import Slots from './Slots';
 import AddAvatarModal from './AddAvatarModal';
 import Dates from './Dates';
+import { slotTypes, months as monthCollection } from './constants';
 
 class ContactForm extends React.Component {
   state = {
@@ -20,6 +21,52 @@ class ContactForm extends React.Component {
       avatar: null
     }
   };
+
+  get slots() {
+    if (this.state.form.slots && this.state.form.slots.length > 0) {
+      return (
+        <React.Fragment>
+          <Divider />
+          <ul className="contact-slots">
+            {
+              this.state.form.slots.map((slot, index) => (
+                <li key={index}>
+                  {
+                    slot.type === 9 ?
+                    <h4>{slot.customName}</h4> :
+                    <h4>{slotTypes[slot.type].text}</h4>
+                  }
+                  <p>{slot.value}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </React.Fragment>
+      )
+    }
+  }
+
+  get dates() {
+    if (this.state.form.dates && this.state.form.dates.length > 0) {
+      return (
+        <React.Fragment>
+          <Divider />
+          <ul className="contact-dates">
+            {
+              this.state.form.dates.map((date, index) => (
+                <li key={index}>
+                  <span>{monthCollection[date.month - 1].text}</span>&nbsp;&#47;&nbsp;
+                  <span>{date.day}</span>&nbsp;&#47;&nbsp;
+                  <span>{date.year}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <Divider />
+        </React.Fragment>
+      )
+    }
+  }
 
   toggleAddingField = () => this.setState({ isAddingField: !this.state.isAddingField });
   toggleAddingDate = () => this.setState({ isAddingDate: !this.state.isAddingDate });
@@ -42,8 +89,10 @@ class ContactForm extends React.Component {
    * @param {string} slot.value - Slot value.
    */
   addSlot = ({ type, customName, value }) => {
-    const next = { 
-      ...this.state, form: { 
+    const next = {
+      ...this.state, 
+        isAddingField: false,
+        form: { 
         ...this.state.form, slots: [ 
           ...this.state.form.slots, {
             type, customName, value 
@@ -65,7 +114,9 @@ class ContactForm extends React.Component {
    */
   addDate = ({ day, month, year }) => {
     const next = {
-      ...this.state, form: {
+      ...this.state,
+        isAddingDate: false,
+        form: {
         ...this.state.form, dates: [
           ...this.state.form.dates, {
             day: Number(day), 
@@ -148,14 +199,13 @@ class ContactForm extends React.Component {
           onChange={this.handleChange}
           value={form.department}
         />
-        <Divider />
         {
           isAddingField ?
           <Slots 
             onSelect={this.addSlot} 
             onCancel={this.toggleAddingField} 
           /> :
-          null
+          this.slots
         }
         {
           isAddingDate ?
@@ -163,7 +213,7 @@ class ContactForm extends React.Component {
             onSelect={this.addDate} 
             onCancel={this.toggleAddingDate}
           /> :
-          null
+          this.dates
         }
         <div className="field-options-container">
           {
