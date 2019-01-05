@@ -5,22 +5,37 @@ import Slots from './Slots';
 import AddAvatarModal from './AddAvatarModal';
 import Dates from './Dates';
 import { slotTypes, months as monthCollection } from './constants';
+import ContactsContext from 'contexts/ContactsContext';
 
 class ContactForm extends React.Component {
-  state = {
-    isAddingField: false,
-    isCustomField: false,
-    isAddingAvatar: false,
-    isAddingDate: false,
-    form: {
-      firstName: '',
-      lastName: '',
-      department: '',
-      slots: [],
-      dates: [],
-      avatar: null
+  static contextType = ContactsContext.Consumer;
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      isAddingField: false,
+      isCustomField: false,
+      isAddingAvatar: false,
+      isAddingDate: false,
+      form: {
+        firstName: '',
+        lastName: '',
+        department: '',
+        slots: [],
+        dates: [],
+        avatar: null
+      }
+    };
+  }
+
+  get isFormInvalid() {
+    const form = this.state.form;
+    if (!form.firstName || !form.lastName || !form.department) {
+      return true;
     }
-  };
+    return false;
+  }
 
   get slots() {
     if (this.state.form.slots && this.state.form.slots.length > 0) {
@@ -79,6 +94,16 @@ class ContactForm extends React.Component {
       form: { ...this.state.form, [name]: value  }
     });
   };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      await this.context.actions.create(this.state.form);
+    } catch (error) {
+      console.error(error);
+      this.setState({ error });
+    }
+  }
 
   /**
    * Appends a `slot` object to the collection of slots.
@@ -155,7 +180,7 @@ class ContactForm extends React.Component {
   }
 
   render() {
-    const { isAddingField, isAddingAvatar, isAddingDate, form } = this.state;
+    const { isAddingField, isAddingAvatar, isAddingDate, form, error } = this.state;
     return (
       <div>
       <AddAvatarModal 
@@ -165,7 +190,7 @@ class ContactForm extends React.Component {
         avatar={form.avatar}
         onDiscard={this.discardAvatarUpdate}
       />
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <header className="form-header">
           <div 
             className="form-avatar-container" 
@@ -230,6 +255,20 @@ class ContactForm extends React.Component {
               Add Date
             </Button>
           }
+        </div>
+        {
+          error ?
+          <p>{JSON.stringify(error)}</p> :
+          null
+        }
+        <div id="controls-align">
+          <Button 
+            primary 
+            type="submit"
+            disabled={this.isFormInvalid}
+          >
+            Create
+          </Button>
         </div>
       </Form>
       </div>

@@ -49,6 +49,7 @@ const AddAvatarModal = ({
 AddAvatarModal.propTypes = {
   avatar: PropTypes.any,
   isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
   onDiscard: PropTypes.func,
   closeCreateModal: PropTypes.func,
   handleFileLoad: PropTypes.func

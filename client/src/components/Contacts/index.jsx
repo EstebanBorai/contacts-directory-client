@@ -3,6 +3,7 @@ import ToolsBar from './ToolsBar';
 import SearchBar from './SearchBar';
 import Navigation from './Navigation';
 import CreateContactModal from './CreateContactModal';
+import ContactsList from './ContactsList';
 
 const options = [
   { key: 'i', text: 'IT', value: 'IT' },
@@ -35,7 +36,7 @@ class Contacts extends React.Component {
     const { section, isSearching, isCreating } = this.state;
     return (
       <section>
-        <CreateContactModal 
+        <CreateContactModal
           isOpen={isCreating} 
           closeCreateModal={this.closeCreateModal} 
         />
@@ -44,10 +45,11 @@ class Contacts extends React.Component {
           openCreateModal={this.openCreateModal} 
         />
         <SearchBar isSearching={isSearching} options={options} />
-        <Navigation 
+        <Navigation
           onNavigate={this.setSection} 
           activeItem={section}
          />
+         <ContactsList />
       </section>
     );
   }

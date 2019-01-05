@@ -61,7 +61,8 @@ module.exports = (env, args) => ({
     extensions: ['.js', '.jsx'],
     alias: {
       api: path.resolve(__dirname, 'src/api'),
-      components: path.resolve(__dirname, 'src/components')
+      components: path.resolve(__dirname, 'src/components'),
+      contexts: path.resolve(__dirname, 'src/contexts')
     }
   }
 });
