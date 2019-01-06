@@ -1,39 +1,30 @@
 import React from 'react';
 import ContactsContext from 'contexts/ContactsContext';
-import { Message, Card } from 'semantic-ui-react';
 import './contacts-list.css';
-import ContactCard from './ContactCard';
+import AllContacts from './AllContacts';
+import FavoriteContacts from './FavoriteContacts';
 
 class ContactsList extends React.Component {
   static contextType = ContactsContext.Consumer;
-
-  constructor(props, context) {
-    super(props, context);
-  } 
 
   async componentDidMount() {
     this.context.actions.get();
   }
 
   render() {
+    const { section } = this.props;
     return (
       <section id="contacts-list">
-        <h1>All Contacts</h1>
-        <ContactsContext.Consumer>
-          {
-            ctx => ctx.state.contacts && ctx.state.contacts.length > 0 ? 
-              <Card.Group centered>
-              {
-                ctx.state.contacts.map((contact, index) => (
-                  <ContactCard key={index} contact={contact} />
-                ))
-              }
-              </Card.Group> :
-              <Message>
-                There's no contacts to show
-              </Message>
-          }
-        </ContactsContext.Consumer>
+        {
+          section === 'favorites' ?
+          <FavoriteContacts /> :
+          null
+        }
+        {
+          section === 'all' ?
+          <AllContacts /> :
+          null
+        }
       </section>
     );
   }

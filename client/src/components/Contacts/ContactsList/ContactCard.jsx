@@ -7,7 +7,7 @@ const ContactCard = ({ contact }) => (
     <Image src={contact.avatar} />
     <Card.Content>
       <Card.Header>
-        {contact.firstName} {contact.lastName}
+        {contact.firstName}&nbsp;{contact.lastName}
       </Card.Header>
       <Card.Meta>
         <span className="date">{contact.department}</span>

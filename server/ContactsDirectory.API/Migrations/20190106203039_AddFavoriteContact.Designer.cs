@@ -3,14 +3,16 @@ using System;
 using ContactsDirectory.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ContactsDirectory.API.Migrations
 {
     [DbContext(typeof(ContactsDirectoryContext))]
-    partial class ContactsDirectoryContextModelSnapshot : ModelSnapshot
+    [Migration("20190106203039_AddFavoriteContact")]
+    partial class AddFavoriteContact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

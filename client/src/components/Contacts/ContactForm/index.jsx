@@ -1,11 +1,12 @@
 import React from 'react';
 import './contact-form.css';
-import { Form, Button, Divider } from 'semantic-ui-react';
+import { Form, Button, Divider, Checkbox } from 'semantic-ui-react';
 import Slots from './Slots';
 import AddAvatarModal from './AddAvatarModal';
 import Dates from './Dates';
 import { slotTypes, months as monthCollection } from './constants';
 import ContactsContext from 'contexts/ContactsContext';
+import ContactOptions from './ContactOptions';
 
 class ContactForm extends React.Component {
   static contextType = ContactsContext.Consumer;
@@ -22,6 +23,7 @@ class ContactForm extends React.Component {
         firstName: '',
         lastName: '',
         department: '',
+        favorite: false,
         slots: [],
         dates: [],
         avatar: null
@@ -179,8 +181,19 @@ class ContactForm extends React.Component {
     this.setState(next);
   }
 
+  handleFavorite = (e, { checked }) => {
+    const next = {
+      ...this.state, form: {
+        ...this.state.form, favorite: checked
+      }
+    };
+
+    this.setState(next);
+  }
+
   render() {
-    const { isAddingField, isAddingAvatar, isAddingDate, form, error } = this.state;
+    const { onClose } = this.props;
+    const { isAddingField, isAddingAvatar, isAddingDate, form, error, favorite } = this.state;
     return (
       <div>
       <AddAvatarModal 
@@ -223,6 +236,10 @@ class ContactForm extends React.Component {
           type="text" 
           onChange={this.handleChange}
           value={form.department}
+        />
+        <ContactOptions 
+          isFavorite={favorite}
+          handleFavorite={this.handleFavorite}
         />
         {
           isAddingField ?
@@ -268,6 +285,12 @@ class ContactForm extends React.Component {
             disabled={this.isFormInvalid}
           >
             Create
+          </Button>
+          <Button 
+            secondary
+            onClick={onClose}
+          >
+            Cancel
           </Button>
         </div>
       </Form>

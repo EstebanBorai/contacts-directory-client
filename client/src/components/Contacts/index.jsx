@@ -49,7 +49,7 @@ class Contacts extends React.Component {
           onNavigate={this.setSection} 
           activeItem={section}
          />
-         <ContactsList />
+         <ContactsList section={section} />
       </section>
     );
   }

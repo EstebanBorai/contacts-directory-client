@@ -7,8 +7,8 @@ class ContactsContext extends React.Component {
   static Consumer = Context.Consumer;
   static Provider = Context.Provider;
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       contacts: null

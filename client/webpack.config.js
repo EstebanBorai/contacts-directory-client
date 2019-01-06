@@ -30,13 +30,19 @@ module.exports = (env, args) => ({
         test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
-            loader: 'file-loader'
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[name].[ext]'
+            }
           }
         ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
+        options: {
+          name: 'assets/[name].[ext]'
+        }
       }
     ]
   },
@@ -61,6 +67,7 @@ module.exports = (env, args) => ({
     extensions: ['.js', '.jsx'],
     alias: {
       api: path.resolve(__dirname, 'src/api'),
+      assets: path.resolve(__dirname, 'src/assets'),
       components: path.resolve(__dirname, 'src/components'),
       contexts: path.resolve(__dirname, 'src/contexts')
     }

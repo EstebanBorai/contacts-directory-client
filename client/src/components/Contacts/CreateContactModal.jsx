@@ -8,7 +8,7 @@ const CreateContactModal = ({ isOpen, closeCreateModal }) => (
     <Modal.Header>Create Contact</Modal.Header>
     <Modal.Content>
       <Modal.Description>
-        <ContactForm />
+        <ContactForm onClose={closeCreateModal} />
       </Modal.Description>
     </Modal.Content>
   </Modal>
