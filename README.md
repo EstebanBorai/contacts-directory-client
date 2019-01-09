@@ -1,4 +1,4 @@
-# contacts-directory-netcore
+# contacts-directory
 > 📘 A contacts directory app made with React.js and .NET Core
 
 ## Motivation
@@ -9,8 +9,8 @@ Contacts Directory app uses a client made with React.js with a server made with 
 The client side interacts with the server through HTTP requests and renders the UI based on the received data.
 
 <p align="center">  
-  <img 
-    src="https://raw.githubusercontent.com/estebanborai/contacts-directory-netcore/master/docs/architecture_ diagram.png" 
+  <img
+    src="https://raw.githubusercontent.com/estebanborai/contacts-directory/master/docs/architecture_%20diagram.png" 
     alt="contacts directory architecture"
   />
 </p>

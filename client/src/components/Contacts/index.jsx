@@ -4,7 +4,9 @@ import SearchBar from './SearchBar';
 import Navigation from './Navigation';
 import CreateContactModal from './CreateContactModal';
 import ContactsList from './ContactsList';
+import PreviewContact from 'components';
 
+// TODO: Get labels from contacts 
 const options = [
   { key: 'i', text: 'IT', value: 'IT' },
   { key: 'r', text: 'Human Resources', value: 'RRHH' }
@@ -14,7 +16,8 @@ class Contacts extends React.Component {
   state = {
     section: 'favorites',
     isSearching: false,
-    isCreating: false
+    isCreating: false,
+    isPreviewing: null
   }
 
   setSection = (e, { name }) => {
@@ -32,8 +35,10 @@ class Contacts extends React.Component {
   openCreateModal = () => this.setState({ isCreating: true });
   closeCreateModal = () => this.setState({ isCreating: false });
 
+  setPreviewContact = contact => this.setState({ isPreviewing: contact });
+
   render() {
-    const { section, isSearching, isCreating } = this.state;
+    const { section, isSearching, isCreating, isPreviewing } = this.state;
     return (
       <section>
         <CreateContactModal
@@ -50,6 +55,7 @@ class Contacts extends React.Component {
           activeItem={section}
          />
          <ContactsList section={section} />
+         <PreviewContact contact={isPreviewing} />
       </section>
     );
   }

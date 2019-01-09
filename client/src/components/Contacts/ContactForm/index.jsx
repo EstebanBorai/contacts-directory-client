@@ -191,6 +191,23 @@ class ContactForm extends React.Component {
     this.setState(next);
   }
 
+  componentDidMount() {
+    const initialValues = this.props.initialValues;
+    if (initialValues) {
+      this.setState({
+        form: {
+          firstName: initialValues.firstName,
+          lastName: initialValues.lastName,
+          department: initialValues.department,
+          favorite: initialValues.favorite,
+          slots: initialValues.slots,
+          dates: initialValues.dates,
+          avatar: initialValues.avatar
+        }
+      });
+    }
+  }
+
   render() {
     const { onClose } = this.props;
     const { isAddingField, isAddingAvatar, isAddingDate, form, error, favorite } = this.state;

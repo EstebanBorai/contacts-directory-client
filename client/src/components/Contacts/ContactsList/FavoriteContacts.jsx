@@ -10,13 +10,16 @@ class FavoriteContacts extends React.Component {
         <ContactsContext.Consumer>
           {ctx =>
             ctx.state.contacts &&
-            ctx.state.contacts.length > 0 &&
+            ctx.state.contacts.size > 0 &&
             ctx.state.contacts.some(c => c.favorite) ? (
-              ctx.state.contacts.map((contact, index) => {
-                if (contact.favorite) {
-                  return <ContactCard contact={contact} key={index} />;
-                }
-              })
+              ctx.state.contacts
+                .valueSeq()
+                .map((contact, index) => {
+                  if (contact.favorite) {
+                    return <ContactCard contact={contact} key={index} />;
+                  }
+                })
+                .toArray()
             ) : (
               <Message>There&#39;s no contacts to show</Message>
             )

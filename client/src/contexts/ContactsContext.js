@@ -1,5 +1,7 @@
 import React, { createContext } from 'react';
 import ContactsAPI from 'api/ContactsAPI';
+import { Map } from 'immutable';
+import { normalize, schema } from 'normalizr';
 
 const Context = createContext({ foo: 'bar' });
 
@@ -18,13 +20,15 @@ class ContactsContext extends React.Component {
   }
 
   get = async () => {
-    const contacts = await this.api.get();
-    this.setState({ contacts });
+    const contactsData = await this.api.get();
+    const contactSchema = new schema.Entity('contact');
+    const contacts = normalize(contactsData, [contactSchema]).entities.contact;
+    this.setState({ contacts: new Map(contacts) });
   }
 
   create = async contact => {
     const newContact = await this.api.create(contact);
-    const next = [ ...this.state.contacts, newContact ];
+    const next = this.state.contacts.set(newContact.id, newContact);
     this.setState({ contacts: next });
   }
 
