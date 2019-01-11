@@ -1,5 +1,6 @@
 import React from 'react';
 import ContactsContext from 'contexts/ContactsContext';
+import NavigationContext from 'contexts/NavigationContext';
 import './contacts-list.css';
 import AllContacts from './AllContacts';
 import FavoriteContacts from './FavoriteContacts';
@@ -8,7 +9,6 @@ import PropTypes from 'prop-types';
 class ContactsList extends React.Component {
   static contextType = ContactsContext.Consumer;
   static propTypes = {
-    section: PropTypes.string.isRequired,
     onSelect: PropTypes.func.isRequired
   }
 
@@ -17,19 +17,16 @@ class ContactsList extends React.Component {
   }
 
   render() {
-    const { section, onSelect } = this.props;
+    const { onSelect } = this.props;
     return (
       <section id="contacts-list">
-        {
-          section === 'favorites' ?
-          <FavoriteContacts onSelect={onSelect} /> :
-          null
-        }
-        {
-          section === 'all' ?
-          <AllContacts onSelect={onSelect} /> :
-          null
-        }
+        <NavigationContext.Consumer>
+          {
+            ({ state }) => state.showFavorites ? 
+            <FavoriteContacts onSelect={onSelect} /> : 
+            <AllContacts onSelect={onSelect} />
+          }
+        </NavigationContext.Consumer>
       </section>
     );
   }

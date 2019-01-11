@@ -1,22 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Modal } from 'semantic-ui-react';
 import ContactForm from './ContactForm';
+import NavigationContext from 'contexts/NavigationContext';
 
-const CreateContactModal = ({ isOpen, closeCreateModal }) => (
-  <Modal open={isOpen} onClose={closeCreateModal}>
-    <Modal.Header>Create Contact</Modal.Header>
-    <Modal.Content>
-      <Modal.Description>
-        <ContactForm onClose={closeCreateModal} />
-      </Modal.Description>
-    </Modal.Content>
-  </Modal>
+const CreateContactModal = () => (
+  <NavigationContext.Consumer>
+    {({ state, actions }) => (
+      <Modal open={state.isAdding} onClose={actions.closeAddingModal}>
+        <Modal.Header>Create Contact</Modal.Header>
+        <Modal.Content>
+          <Modal.Description>
+            <ContactForm onClose={actions.closeAddingModal} />
+          </Modal.Description>
+        </Modal.Content>
+      </Modal>
+    )}
+  </NavigationContext.Consumer>
 );
-
-CreateContactModal.propTypes = {
-  isOpen: PropTypes.bool,
-  closeCreateModal: PropTypes.func
-};
 
 export default CreateContactModal;

@@ -1,28 +1,4 @@
-.search-bar {
-  padding: .8rem .4rem;
+.contacts-main {
+  padding: .7rem 0;
   box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 45% 45%;
-  gap: 0 5%;
-  width: 100%;
-}
-
-.tools-bar {
-  background: #dddddd;
-  color: #333333;
-  padding: .5rem;
-  box-sizing: border-box;
-  text-align: right;
-  margin: 0;
-  list-style-type: none;
-}
-
-.tools-bar li {
-  margin-right: 1rem;
-  display: inline-block;
-}
-
-.tools-bar li:hover {
-  color: #555555;
-  cursor: pointer;
 }

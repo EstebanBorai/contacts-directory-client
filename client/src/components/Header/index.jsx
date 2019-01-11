@@ -1,10 +1,19 @@
 import React from 'react';
 import './header.css';
+import Menu from './Menu';
+import Filters from './Filters';
+import NavigationContext from 'contexts/NavigationContext';
 
-const Header = () => (
-  <header id="app-header">
-    <h1>Contacts</h1>
-  </header>
-);
+class Header extends React.Component {
+  static contextType = NavigationContext.Consumer;
+  render() {
+    return (
+      <header id="app-header">
+        <Menu onNavigate={this.context.actions.setNavigation} />
+        <Filters />
+      </header>
+    );
+  }
+}
 
 export default Header;

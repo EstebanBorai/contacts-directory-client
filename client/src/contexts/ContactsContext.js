@@ -3,7 +3,7 @@ import ContactsAPI from 'api/ContactsAPI';
 import { Map } from 'immutable';
 import { normalize, schema } from 'normalizr';
 
-const Context = createContext({ foo: 'bar' });
+const Context = createContext();
 
 class ContactsContext extends React.Component {
   static Consumer = Context.Consumer;
