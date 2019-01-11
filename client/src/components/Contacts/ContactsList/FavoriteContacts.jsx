@@ -1,10 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Message, Card } from 'semantic-ui-react';
 import ContactsContext from 'contexts/ContactsContext';
 import ContactCard from './ContactCard';
 
 class FavoriteContacts extends React.Component {
+  static propTypes = {
+    onSelect: PropTypes.func.isRequired
+  }
+
   render() {
+    const { onSelect } = this.props;
     return (
       <Card.Group centered>
         <ContactsContext.Consumer>
@@ -16,7 +22,13 @@ class FavoriteContacts extends React.Component {
                 .valueSeq()
                 .map((contact, index) => {
                   if (contact.favorite) {
-                    return <ContactCard contact={contact} key={index} />;
+                    return (
+                      <ContactCard
+                        contact={contact}
+                        key={index}
+                        onSelect={onSelect}
+                      />
+                    );
                   }
                 })
                 .toArray()

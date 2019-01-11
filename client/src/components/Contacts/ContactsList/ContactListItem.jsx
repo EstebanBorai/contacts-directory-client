@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { List, Image } from 'semantic-ui-react';
 import sampleImage from 'assets/sample-color.png';
 
-const ContactListItem = ({ contact }) => (
-  <List.Item>
+const ContactListItem = ({ contact, onSelect }) => (
+  <List.Item onClick={onSelect.bind(null, contact)}>
     {contact.avatar !== null ? (
       <Image avatar src={contact.avatar} />
     ) : (
@@ -20,7 +20,8 @@ const ContactListItem = ({ contact }) => (
 );
 
 ContactListItem.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 export default ContactListItem;

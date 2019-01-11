@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Icon, Image } from 'semantic-ui-react';
 
-const ContactCard = ({ contact }) => (
-  <Card>
+const ContactCard = ({ contact, onSelect }) => (
+  <Card onClick={onSelect.bind(null, contact)}>
     <Image src={contact.avatar} />
     <Card.Content>
       <Card.Header>
@@ -27,7 +27,8 @@ const ContactCard = ({ contact }) => (
 );
 
 ContactCard.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 export default ContactCard;

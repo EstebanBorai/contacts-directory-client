@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import Navigation from './Navigation';
 import CreateContactModal from './CreateContactModal';
 import ContactsList from './ContactsList';
-import PreviewContact from 'components';
+import PreviewContact from './PreviewContact';
 
 // TODO: Get labels from contacts 
 const options = [
@@ -49,13 +49,17 @@ class Contacts extends React.Component {
           toggleToolsBar={this.toggleToolsBar} 
           openCreateModal={this.openCreateModal} 
         />
-        <SearchBar isSearching={isSearching} options={options} />
-        <Navigation
-          onNavigate={this.setSection} 
-          activeItem={section}
-         />
-         <ContactsList section={section} />
-         <PreviewContact contact={isPreviewing} />
+        { isPreviewing ?
+          <PreviewContact contact={isPreviewing} /> :
+          <React.Fragment>
+            <SearchBar isSearching={isSearching} options={options} />
+            <Navigation
+              onNavigate={this.setSection} 
+              activeItem={section}
+            />
+            <ContactsList section={section} onSelect={this.setPreviewContact} />
+          </React.Fragment>
+        }
       </section>
     );
   }
