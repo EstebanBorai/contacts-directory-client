@@ -27,7 +27,9 @@ const DeleteContactModal = () => (
                 >
                   <Icon name="trash alternate" /> Yes
                 </Button>
-                <Button secondary>No</Button>
+                <Button secondary onClick={actions.closeDeleteModal}>
+                  No
+                </Button>
               </Modal.Actions>
             )}
           </ContactsContext.Consumer>

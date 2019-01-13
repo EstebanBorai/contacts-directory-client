@@ -22,13 +22,16 @@ class ContactsContext extends React.Component {
   }
 
   get = async () => {
+    this.context.actions.setLoading(true);
     try {
       const contactsData = await this.api.get();
       const contactSchema = new schema.Entity('contact');
       const contacts = normalize(contactsData, [contactSchema]).entities.contact;
       this.setState({ contacts: new Map(contacts) });
+      this.context.actions.setLoading(false);
     } catch(error) {
       this.context.actions.setError(await error);
+      this.context.actions.setLoading(false);
     }
   }
 
