@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './preview-contact.css';
-import Slot from './Slot';
+import { Icon } from 'semantic-ui-react';
 
 const ContactData = ({ contact }) => (
   <div className="contact-data">
-    <header>{contact.avatar ? <img src={contact.avatar} /> : null}</header>
-    <h3>
-      {contact.firstName} {contact.lastName}
+    {contact.avatar ? (
+      <div className="contact-avatar">
+        <img src={contact.avatar} />
+      </div>
+    ) : null}
+    <h3 className="contact-fullname">
+      {contact.firstName} {contact.lastName} &nbsp;
+      {contact.favorite ? <Icon name="star" color="yellow" /> : null}
     </h3>
-    <span>{contact.department}</span>
-    {contact.slots && contact.slots.length > 0
-      ? contact.slots.map(slot => <Slot slot={slot} key={slot.id} />)
-      : null}
+    <span className="contact-department">{contact.department}</span>
   </div>
 );
 

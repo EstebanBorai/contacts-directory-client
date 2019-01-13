@@ -2,3 +2,8 @@
   padding: .7rem 0;
   box-sizing: border-box;
 }
+
+.split-2 {
+  display: grid;
+  grid-template-columns: 60% auto;
+}

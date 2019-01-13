@@ -1,14 +1,13 @@
 import React from 'react';
 import ContactsContext from 'contexts/ContactsContext';
-import NavigationContext from 'contexts/NavigationContext';
 import './contacts-list.css';
 import AllContacts from './AllContacts';
-import FavoriteContacts from './FavoriteContacts';
 import PropTypes from 'prop-types';
 
 class ContactsList extends React.Component {
   static contextType = ContactsContext.Consumer;
   static propTypes = {
+    isPreviewing: PropTypes.string,
     onSelect: PropTypes.func.isRequired
   }
 
@@ -17,24 +16,10 @@ class ContactsList extends React.Component {
   }
 
   render() {
-    const { onSelect } = this.props;
+    const { onSelect, isPreviewing } = this.props;
     return (
       <section id="contacts-list">
-        <NavigationContext.Consumer>
-          {
-            ({ state }) => {
-              if (!state.error) {
-                return (
-                  state.showFavorites ? 
-                  <FavoriteContacts onSelect={onSelect} /> : 
-                  <AllContacts onSelect={onSelect} />
-                )
-              } else {
-                return (<h1>{JSON.stringify(state.error)}</h1>)
-              }
-            }
-          }
-        </NavigationContext.Consumer>
+        <AllContacts onSelect={onSelect} isPreviewing={isPreviewing} />
       </section>
     );
   }

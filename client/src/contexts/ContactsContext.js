@@ -42,13 +42,24 @@ class ContactsContext extends React.Component {
     }
   }
 
+  remove = async contact => {
+    try {
+      const deleted = await this.api.delete(contact);
+      const next = this.state.contacts.remove(deleted.id);
+      this.setState({ contacts: next });
+    } catch (error) {
+      this.context.actions.setError(await error);
+    }
+  }
+
   render() {
     const { children } = this.props;
     const contextValue = {
       state: { ...this.state },
       actions: {
         get: this.get,
-        create: this.create
+        create: this.create,
+        remove: this.remove
       }
     }
 

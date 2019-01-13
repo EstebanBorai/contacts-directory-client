@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack').DefinePlugin;
+const HotModuleReplacementPlugin = require('webpack')
+  .HotModuleReplacementPlugin;
 
 module.exports = (env, args) => ({
   entry: './src/index.js',
@@ -49,7 +51,8 @@ module.exports = (env, args) => ({
   devServer: {
     contentBase: path.join(__dirname, 'src'),
     compress: true,
-    port: 8080
+    port: 8080,
+    hot: true
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -61,7 +64,8 @@ module.exports = (env, args) => ({
         args.mode === 'development'
           ? JSON.stringify('https://localhost:5001/api/')
           : ''
-    })
+    }),
+    new HotModuleReplacementPlugin()
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

@@ -12,7 +12,8 @@ class NavigationContext extends React.Component {
     this.state = {
       showFavorites: false,
       isAdding: false,
-      isPreviewing: false
+      isPreviewing: false,
+      isDeleting: null
     }
   }
 
@@ -21,6 +22,9 @@ class NavigationContext extends React.Component {
   openAddingModal = () => this.setState({ isAdding: true });
   closeAddingModal = () => this.setState({ isAdding: false });
 
+  openDeleteModal = contact => this.setState({ isDeleting: contact });
+  closeDeleteModal = () => this.setState({ isDeleting: null });
+
   render() {
     const { children } = this.props;
     const contextValue = {
@@ -28,7 +32,9 @@ class NavigationContext extends React.Component {
       actions: {
         toggleFavorites: this.toggleFavorites,
         openAddingModal: this.openAddingModal,
-        closeAddingModal: this.closeAddingModal
+        closeAddingModal: this.closeAddingModal,
+        openDeleteModal: this.openDeleteModal,
+        closeDeleteModal: this.closeDeleteModal
       }
     }
 

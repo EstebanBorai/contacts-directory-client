@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Image } from 'semantic-ui-react';
+import { List, Image, Icon } from 'semantic-ui-react';
 import sampleImage from 'assets/sample-color.png';
 
-const ContactListItem = ({ contact, onSelect }) => (
-  <List.Item onClick={onSelect.bind(null, contact)}>
+const ContactListItem = ({ contact, onSelect, isSelected }) => (
+  <List.Item
+    onClick={onSelect.bind(null, contact)}
+    active={isSelected === contact.id}
+  >
     {contact.avatar !== null ? (
       <Image avatar src={contact.avatar} />
     ) : (
@@ -13,6 +16,9 @@ const ContactListItem = ({ contact, onSelect }) => (
     <List.Content>
       <List.Header as="a">
         {contact.firstName}&nbsp;{contact.lastName}
+        {contact.favorite ? (
+          <Icon name="star" color="yellow" style={{ marginLeft: '.5rem' }} />
+        ) : null}
       </List.Header>
       <List.Description>{contact.department}</List.Description>
     </List.Content>
@@ -20,6 +26,7 @@ const ContactListItem = ({ contact, onSelect }) => (
 );
 
 ContactListItem.propTypes = {
+  isSelected: PropTypes.string,
   contact: PropTypes.object.isRequired,
   onSelect: PropTypes.func.isRequired
 };
