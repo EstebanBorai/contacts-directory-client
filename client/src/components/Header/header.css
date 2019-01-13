@@ -33,3 +33,31 @@
   max-width: 300px;
   display: inline-block;
 }
+
+.notification-header {
+  background: #faebc3;
+  padding: 1em .5rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.notification-icon-container {
+  margin: 0 .5rem;
+  display: inline-block;
+}
+
+.content-divider {
+  display: inline-block;
+}
+
+.content-divider button {
+  background: none;
+  border: none;
+  color: #8b8b8b;
+}
+
+.content-divider button:hover {
+  color: #1b1b1b;
+  cursor: pointer;
+}

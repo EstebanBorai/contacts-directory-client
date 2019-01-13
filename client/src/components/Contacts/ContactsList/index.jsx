@@ -22,9 +22,17 @@ class ContactsList extends React.Component {
       <section id="contacts-list">
         <NavigationContext.Consumer>
           {
-            ({ state }) => state.showFavorites ? 
-            <FavoriteContacts onSelect={onSelect} /> : 
-            <AllContacts onSelect={onSelect} />
+            ({ state }) => {
+              if (!state.error) {
+                return (
+                  state.showFavorites ? 
+                  <FavoriteContacts onSelect={onSelect} /> : 
+                  <AllContacts onSelect={onSelect} />
+                )
+              } else {
+                return (<h1>{JSON.stringify(state.error)}</h1>)
+              }
+            }
           }
         </NavigationContext.Consumer>
       </section>

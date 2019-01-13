@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './preview-contact.css';
+import ContactData from './ContactData';
 
 const PreviewContact = ({ contact }) => (
   <section className="preview-contact">
-    {contact.avatar ? <img src={contact.avatar} /> : null}
-    <h3>
-      {contact.firstName} {contact.lastName}
-    </h3>
-    <span>{contact.department}</span>
+    <ContactData contact={contact} />
   </section>
 );
 

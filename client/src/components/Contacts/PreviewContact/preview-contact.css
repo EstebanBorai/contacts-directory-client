@@ -1,0 +1,10 @@
+.preview-contact {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+}
+
+.contact-data {
+  grid-column: 2 / 2;
+  grid-template-rows: 30% auto;
+  text-align: center;
+}
