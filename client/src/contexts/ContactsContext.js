@@ -15,7 +15,8 @@ class ContactsContext extends React.Component {
     super(props, context);
 
     this.state = {
-      contacts: null
+      contacts: null,
+      isPreviewing: null
     }
 
     this.api = new ContactsAPI();
@@ -45,6 +46,8 @@ class ContactsContext extends React.Component {
     }
   }
 
+  setPreview = contact => this.setState({ isPreviewing: contact });
+
   remove = async contact => {
     try {
       const deleted = await this.api.delete(contact);
@@ -62,7 +65,8 @@ class ContactsContext extends React.Component {
       actions: {
         get: this.get,
         create: this.create,
-        remove: this.remove
+        remove: this.remove,
+        setPreview: this.setPreview
       }
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'semantic-ui-react';
 import ContactForm from './ContactForm';
-import NavigationContext from 'contexts/NavigationContext';
+import { NavigationContext } from 'contexts';
 
 const CreateContactModal = () => (
   <NavigationContext.Consumer>

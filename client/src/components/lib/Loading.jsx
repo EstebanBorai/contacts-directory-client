@@ -1,7 +1,7 @@
 import React from 'react';
 import { Loader } from 'semantic-ui-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import AppContext from 'contexts/AppContext';
+import { AppContext } from 'contexts';
 import './animate.css';
 
 const style = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.css';
-import AppContext from 'contexts/AppContext';
+import { AppContext } from 'contexts';
 import { Icon } from 'semantic-ui-react';
 
 function parseErrors(error) {

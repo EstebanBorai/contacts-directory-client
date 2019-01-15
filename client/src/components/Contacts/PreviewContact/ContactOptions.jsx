@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
-import NavigationContext from 'contexts/NavigationContext';
+import { NavigationContext } from 'contexts';
 
 const ContactOptions = ({ contact }) => (
   <NavigationContext.Consumer>

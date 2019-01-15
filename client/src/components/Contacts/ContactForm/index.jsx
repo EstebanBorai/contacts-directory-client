@@ -5,7 +5,7 @@ import Slots from './Slots';
 import AddAvatarModal from './AddAvatarModal';
 import Dates from './Dates';
 import { slotTypes, months as monthCollection } from './constants';
-import ContactsContext from 'contexts/ContactsContext';
+import { ContactsContext } from 'contexts';
 import ContactOptions from './ContactOptions';
 
 class ContactForm extends React.Component {

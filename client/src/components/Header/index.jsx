@@ -2,7 +2,7 @@ import React from 'react';
 import './header.css';
 import Menu from './Menu';
 import Filters from './Filters';
-import NavigationContext from 'contexts/NavigationContext';
+import { NavigationContext } from 'contexts';
 import Notification from './Notification';
 
 class Header extends React.Component {
