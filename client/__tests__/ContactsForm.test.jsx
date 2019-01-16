@@ -22,7 +22,11 @@ describe('ContactsForm renderization and usage', () => {
   });
 
   it('appends a slot', () => {
-    const testSlot = { type: 9, customName: 'test slot', value: 'test value' };
+    const testSlot = {
+      type: 9,
+      customSlotType: 'test slot',
+      value: 'test value'
+    };
     contactsForm.instance().addSlot(testSlot);
     expect(contactsForm.state().form.slots[0]).toEqual(testSlot);
   });
@@ -37,11 +41,9 @@ describe('ContactsForm renderization and usage', () => {
   });
 
   it('adds an avatar image', () => {
-    contactsForm.instance().handleFileLoad({ 
+    contactsForm.instance().handleFileLoad({
       target: {
-        files: [
-          { foo: 'bar' }
-        ] 
+        files: [{ foo: 'bar' }]
       }
     });
     expect(contactsForm.state().form.avatar).toEqual('FILE_READED');
@@ -51,11 +53,14 @@ describe('ContactsForm renderization and usage', () => {
     contactsForm.setState({ form: { avatar: 'SOMEHTING' } });
     contactsForm.instance().discardAvatarUpdate();
     expect(contactsForm.state().form.avatar).toBe(null);
-  })
+  });
 
   it('should update fields in state', () => {
     const input = contactsForm.find('[name="firstName"]');
-    input.simulate('change', null, { name: 'firstName', value: 'test first name' });
+    input.simulate('change', null, {
+      name: 'firstName',
+      value: 'test first name'
+    });
     expect(contactsForm.state().form.firstName).toBe('test first name');
   });
 });

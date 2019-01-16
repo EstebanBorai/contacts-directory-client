@@ -24,8 +24,8 @@ describe('Contacts/ContactForm/Slots renderization and usage', () => {
   });
 
   // it('update field values', () => {
-  //   const event = { target: { name: 'customName', value: 'test' } };
+  //   const event = { target: { name: 'customSlotType', value: 'test' } };
   //   slots.simulate('change', event);
-  //   expect(slots.state('customNave')).toBe('test');
+  //   expect(slots.state('customSlotType')).toBe('test');
   // });
 });

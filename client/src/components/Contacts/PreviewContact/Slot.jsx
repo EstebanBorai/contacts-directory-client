@@ -9,7 +9,9 @@ import { editTypes } from 'components/Contacts/EditFieldModal/constants';
 const Slot = ({ slot }) => (
   <li className="contact-slot">
     <div className="main-data">
-      <em>{slotTypes[slot.type].text}</em>
+      <em>
+        {slot.type <= 8 ? slotTypes[slot.type].text : slot.customSlotType}
+      </em>
       <div className="contact-slot-field">
         <Icon name="phone" color="grey" />
         <span>{slot.value}</span>
