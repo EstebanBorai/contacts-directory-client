@@ -50,7 +50,7 @@ class ContactForm extends React.Component {
                 <li key={index}>
                   {
                     slot.type === 9 ?
-                    <h4>{slot.customName}</h4> :
+                    <h4>{slot.customSlotType}</h4> :
                     <h4>{slotTypes[slot.type].text}</h4>
                   }
                   <p>{slot.value}</p>
@@ -112,17 +112,17 @@ class ContactForm extends React.Component {
    * 
    * @param {Object} slot - Slot properties.
    * @param {number} slot.type - The slot type.
-   * @param {string} slot.customName - Slot name.
+   * @param {string} slot.customSlotType - Slot name.
    * @param {string} slot.value - Slot value.
    */
-  addSlot = ({ type, customName, value }) => {
+  addSlot = ({ type, customSlotType, value }) => {
     const next = {
       ...this.state, 
         isAddingField: false,
         form: { 
         ...this.state.form, slots: [ 
           ...this.state.form.slots, {
-            type, customName, value 
+            type, customSlotType, value 
           } 
         ] 
       } 

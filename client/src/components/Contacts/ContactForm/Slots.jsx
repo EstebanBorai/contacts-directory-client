@@ -5,7 +5,7 @@ import { slotTypes } from './constants';
 class Slots extends React.Component {
   state = {
     slotType: '',
-    customName: undefined,
+    customSlotType: undefined,
     value: '',
     fieldType: 1
   }
@@ -18,7 +18,7 @@ class Slots extends React.Component {
   }
 
   render() {
-    const { fieldType, customName, value } = this.state; 
+    const { fieldType, customSlotType, value } = this.state; 
     const { onSelect, onCancel } = this.props;
     return (
       <div>
@@ -34,7 +34,7 @@ class Slots extends React.Component {
           <Form.Input 
             label="Field Name" 
             type="text"
-            name="customName"
+            name="customSlotType"
             onChange={this.handleOnChange} 
           /> : 
           null
@@ -47,7 +47,7 @@ class Slots extends React.Component {
         />
         <Button 
           primary
-          onClick={onSelect.bind(null, { type: fieldType, customName, value  })}
+          onClick={onSelect.bind(null, { type: fieldType, customSlotType, value  })}
         >
           Confirm
         </Button>

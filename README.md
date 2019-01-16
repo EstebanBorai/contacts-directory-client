@@ -1,6 +1,13 @@
 # contacts
 > 📘 A contacts directory app made with React.js and .NET Core
 
+<p align="center">  
+  <img
+    src="https://raw.githubusercontent.com/estebanborai/contacts-directory/master/docs/screenshot.png" 
+    alt="screenshot"
+  />
+</p>
+
 ## Motivation
 Use .NET Core to create a WebAPI.
 

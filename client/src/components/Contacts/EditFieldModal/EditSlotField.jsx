@@ -13,7 +13,9 @@ const EditSlotField = ({ fieldValues }) => (
         margin: 0
       }}
     >
-      {slotTypes[fieldValues.type].text}
+      {fieldValues.type <= 8
+        ? slotTypes[fieldValues.type].text
+        : fieldValues.customSlotType}
     </h4>
     <Input placeholder={fieldValues.value} value={fieldValues.value} />
   </div>
