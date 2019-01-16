@@ -50,6 +50,12 @@
   padding: .45rem;
   box-sizing: border-box;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-slot .main-data {
+  display: flex;
   flex-direction: column;
 }
 
@@ -81,4 +87,8 @@
 
 .contact-preview-footer i {
   cursor: pointer;
+}
+
+.contact-slot-field {
+  display: flex;
 }

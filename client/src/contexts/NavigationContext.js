@@ -13,7 +13,9 @@ class NavigationContext extends React.Component {
       showFavorites: false,
       isAdding: false,
       isPreviewing: false,
-      isDeleting: null
+      isDeleting: null,
+      isEditing: null,
+      editType: null
     }
   }
 
@@ -25,6 +27,9 @@ class NavigationContext extends React.Component {
   openDeleteModal = contact => this.setState({ isDeleting: contact });
   closeDeleteModal = () => this.setState({ isDeleting: null });
 
+  openEditingModal = (field, editType) => this.setState({ isEditing: field, editType });
+  closeEditingModal = () => this.setState({ isEditing: null, editType: null });
+
   render() {
     const { children } = this.props;
     const contextValue = {
@@ -34,7 +39,9 @@ class NavigationContext extends React.Component {
         openAddingModal: this.openAddingModal,
         closeAddingModal: this.closeAddingModal,
         openDeleteModal: this.openDeleteModal,
-        closeDeleteModal: this.closeDeleteModal
+        closeDeleteModal: this.closeDeleteModal,
+        openEditingModal: this.openEditingModal,
+        closeEditingModal: this.closeEditingModal
       }
     }
 

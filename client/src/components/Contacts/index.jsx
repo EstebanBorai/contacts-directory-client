@@ -5,6 +5,7 @@ import DeleteContactModal from './DeleteContactModal';
 import ContactsList from './ContactsList';
 import PreviewContact from './PreviewContact';
 import { ContactsContext } from 'contexts';
+import EditFieldModal from './EditFieldModal';
 
 const Contacts = () => (
   <ContactsContext.Consumer>
@@ -16,6 +17,7 @@ const Contacts = () => (
       >
         <CreateContactModal />
         <DeleteContactModal />
+        <EditFieldModal />
         <ContactsList />
         {state.isPreviewing ? (
           <PreviewContact contact={state.isPreviewing} />
