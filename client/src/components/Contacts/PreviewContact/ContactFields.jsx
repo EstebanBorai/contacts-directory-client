@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './preview-contact.css';
+import './preview-contact.scss';
 import Slot from './Slot';
 import DateField from './DateField';
 

@@ -12,7 +12,7 @@ class API {
    * @param {string} [options.method=GET] - Define request method
    */
   async request(params, options) {
-    return await fetch(this.url, {
+    return await fetch(params ? this.url.concat('/' + params) : this.url, {
       method: (options && options.method) || 'GET',
       headers: {
         'Content-Type': (options && options.contentType) || 'application/json'

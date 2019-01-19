@@ -44,8 +44,9 @@ namespace ContactsDirectory.Entity
             return await DataContext.Contacts.Include(c => c.Slots).Include(c => c.Dates).ToListAsync();
         }
 
-        public async Task<Contact> UpdateContact(Contact contact)
+        public async Task<Contact> UpdateContact(Guid id, Contact contact)
         {
+            contact.Id = id;
             Contact updated = DataContext.Contacts.Update(contact).Entity;
             await DataContext.SaveChangesAsync();
             return updated;

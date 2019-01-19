@@ -36,10 +36,10 @@ namespace ContactsDirectory.API.Controllers
             return Ok(await DataSource.CreateContact(contact));
         }
 
-        [HttpPut]
-        public async Task<ActionResult> Update(Contact contact)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(Guid id, Contact contact)
         {
-            return Ok(await DataSource.UpdateContact(contact));
+            return Ok(await DataSource.UpdateContact(id, contact));
         }
 
         [HttpDelete]
