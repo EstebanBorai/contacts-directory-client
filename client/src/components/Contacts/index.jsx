@@ -4,8 +4,8 @@ import CreateContactModal from './CreateContactModal';
 import DeleteContactModal from './DeleteContactModal';
 import ContactsList from './ContactsList';
 import PreviewContact from './PreviewContact';
+import EditContactModal from 'components/Contacts/EditContactModal';
 import { ContactsContext } from 'contexts';
-import EditFieldModal from './EditFieldModal';
 
 const Contacts = () => (
   <ContactsContext.Consumer>
@@ -17,7 +17,7 @@ const Contacts = () => (
       >
         <CreateContactModal />
         <DeleteContactModal />
-        <EditFieldModal />
+        <EditContactModal />
         <ContactsList />
         {state.isPreviewing ? (
           <PreviewContact contact={state.isPreviewing} />

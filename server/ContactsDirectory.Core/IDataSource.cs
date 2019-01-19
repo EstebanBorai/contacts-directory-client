@@ -9,7 +9,7 @@ namespace ContactsDirectory.Core
         Task<List<Contact>> GetContacts();
         Task<Contact> GetContact(Guid id);
         Task<Contact> CreateContact(Contact contact);
-        Task<Contact> UpdateContact(Contact contact);
+        Task<Contact> UpdateContact(Guid id, Contact contact);
         Task<Contact> DeleteContact(Contact contact);
     }
 }

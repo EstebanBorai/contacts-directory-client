@@ -5,8 +5,11 @@ import { NavigationContext } from 'contexts';
 
 const ContactOptions = ({ contact }) => (
   <NavigationContext.Consumer>
-    {({ actions: { openDeleteModal } }) => (
+    {({ actions: { openDeleteModal, openEditingModal } }) => (
       <footer className="contact-preview-footer ">
+        <Button onClick={openEditingModal.bind(null, contact)} icon>
+          <Icon name="edit" color="black" />
+        </Button>
         <Button onClick={openDeleteModal.bind(null, contact)} icon>
           <Icon name="trash alternate" color="red" />
         </Button>

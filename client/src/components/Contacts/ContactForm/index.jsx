@@ -1,6 +1,8 @@
+// TODO: Refactor this component. It is so big 
 import React from 'react';
 import './contact-form.css';
-import { Form, Button, Divider, Checkbox } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Form, Button, Divider } from 'semantic-ui-react';
 import Slots from './Slots';
 import AddAvatarModal from './AddAvatarModal';
 import Dates from './Dates';
@@ -10,6 +12,9 @@ import ContactOptions from './ContactOptions';
 
 class ContactForm extends React.Component {
   static contextType = ContactsContext.Consumer;
+  static propTypes = {
+    initialValues: PropTypes.object
+  }
 
   constructor(props, context) {
     super(props, context);
@@ -100,7 +105,11 @@ class ContactForm extends React.Component {
   handleSubmit = async e => {
     e.preventDefault();
     try {
-      await this.context.actions.create(this.state.form);
+      if (this.props.initialValues) {
+        await this.context.actions.update(this.props.initialValues.id, this.state.form);
+      } else {
+        await this.context.actions.create(this.state.form);
+      }
     } catch (error) {
       console.error(error);
       this.setState({ error });
@@ -209,7 +218,7 @@ class ContactForm extends React.Component {
   }
 
   render() {
-    const { onClose } = this.props;
+    const { onClose, initialValues } = this.props;
     const { isAddingField, isAddingAvatar, isAddingDate, form, error, favorite } = this.state;
     return (
       <div>
@@ -295,7 +304,16 @@ class ContactForm extends React.Component {
           <p>{JSON.stringify(error)}</p> :
           null
         }
-        <div id="controls-align">
+        <div className="controls-align">
+        {
+          initialValues ?
+          <Button
+            primary
+            type="submit"
+            disabled={this.isFormInvalid}
+          >
+            Update
+          </Button> :
           <Button 
             primary 
             type="submit"
@@ -303,6 +321,7 @@ class ContactForm extends React.Component {
           >
             Create
           </Button>
+        }
           <Button 
             secondary
             onClick={onClose}

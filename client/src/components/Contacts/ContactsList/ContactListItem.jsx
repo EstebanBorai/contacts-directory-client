@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { List, Image, Icon } from 'semantic-ui-react';
 import sampleImage from 'assets/sample-color.png';
 import { ContactsContext } from 'contexts';
+import './contacts-list.css';
 
 const ContactListItem = ({ contact }) => (
   <ContactsContext.Consumer>

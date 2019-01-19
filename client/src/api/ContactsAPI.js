@@ -22,6 +22,15 @@ class ContactsAPI extends API {
   }
 
   /**
+   * Updates a contact
+   *
+   * @param {object} contact
+   */
+  async update(id, contact) {
+    return await this.request(id, { method: 'PUT', body: contact });
+  }
+
+  /**
    * Deletes a contact from the database
    *
    * @param {object} contact - Contact object

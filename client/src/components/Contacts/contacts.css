@@ -1,6 +1,8 @@
 .contacts-main {
   padding: .7rem 0;
   box-sizing: border-box;
+  height: calc(100vh - 52px);
+  width: 100%;
 }
 
 .split-2 {

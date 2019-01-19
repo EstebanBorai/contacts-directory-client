@@ -1,37 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './preview-contact.css';
-import { Icon, Button } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import { slotTypes } from 'components/Contacts/ContactForm/constants';
-import { NavigationContext } from 'contexts';
-import { editTypes } from 'components/Contacts/EditFieldModal/constants';
+import './preview-contact.scss';
 
 const Slot = ({ slot }) => (
   <li className="contact-slot">
-    <div className="main-data">
-      <em>
-        {slot.type <= 8 ? slotTypes[slot.type].text : slot.customSlotType}
-      </em>
-      <div className="contact-slot-field">
-        <Icon name="phone" color="grey" />
-        <span>{slot.value}</span>
-      </div>
-    </div>
-    <NavigationContext.Consumer>
-      {({ actions }) => (
-        <Button
-          icon
-          onClick={actions.openEditingModal.bind(null, slot, editTypes.slot)}
-        >
-          <Icon name="edit" />
-        </Button>
-      )}
-    </NavigationContext.Consumer>
+    {slot.type === 9 ? (
+      <em>{slot.customSlotType}</em>
+    ) : (
+      <em>{slotTypes[slot.type].text}</em>
+    )}
+    <p>
+      <span className="icon-container">
+        <Icon name="phone" />
+      </span>
+      <span>{slot.value}</span>
+    </p>
   </li>
 );
 
 Slot.propTypes = {
-  slot: PropTypes.object.isRequired
+  slot: PropTypes.object
 };
 
 export default Slot;
