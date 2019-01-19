@@ -80,6 +80,15 @@
   cursor: pointer;
 }
 
+.contact-slot.editing {
+  background: #eeeeee;
+}
+
+.contact-slot.editing:hover {
+  background: #eeeeee;
+  cursor: default;
+}
+
 .contact-field-list {
   padding: 0;
   margin: 0;

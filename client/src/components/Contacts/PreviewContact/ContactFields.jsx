@@ -7,7 +7,10 @@ import DateField from './DateField';
 const ContactFields = ({ slots, dates }) => (
   <section className="contact-fields">
     <ul className="contact-field-list">
-      {slots && slots.map((slot, index) => <Slot key={index} slot={slot} />)}
+      {slots &&
+        slots.map((slot, index) => (
+          <Slot key={index} slot={slot} slotIndex={index} />
+        ))}
     </ul>
     <ul className="contact-fields">
       {dates &&

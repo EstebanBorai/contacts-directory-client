@@ -48,6 +48,14 @@ class ContactsContext extends React.Component {
 
   setPreview = contact => this.setState({ isPreviewing: contact });
 
+  editSlot = (slot, slotIndex) => {
+    const next = { ...this.state.isPreviewing };
+    next.slots[slotIndex] = slot;
+    this.setState({
+      isPreviewing: next
+    });
+  }
+
   remove = async contact => {
     try {
       const deleted = await this.api.delete(contact);
@@ -66,7 +74,8 @@ class ContactsContext extends React.Component {
         get: this.get,
         create: this.create,
         remove: this.remove,
-        setPreview: this.setPreview
+        setPreview: this.setPreview,
+        editSlot: this.editSlot
       }
     }
 
