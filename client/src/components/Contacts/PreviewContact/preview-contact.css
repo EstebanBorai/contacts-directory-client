@@ -1,6 +1,6 @@
 .preview-contact {
-  height: calc(100vh - 125px);
-  margin: 5% 0;
+  height: 100%;
+  margin: auto 0;
   border-left: 1px solid #e4e2e2;
   text-align: center;
   position: relative;
@@ -57,6 +57,16 @@
 .contact-slot .main-data {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.contact-slot 
+.main-data 
+.ui, 
+.selection, 
+.dropdown, 
+.input {
+  width: 90%;
 }
 
 .contact-slot em {

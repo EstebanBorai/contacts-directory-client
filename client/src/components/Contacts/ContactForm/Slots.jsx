@@ -1,8 +1,14 @@
 import React from 'react';
 import { Form, Button, Divider } from 'semantic-ui-react';
 import { slotTypes } from './constants';
+import PropTypes from 'prop-types';
 
 class Slots extends React.Component {
+  static propTypes = {
+    onCancel: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired
+  }
+
   state = {
     slotType: '',
     customSlotType: undefined,
@@ -42,7 +48,7 @@ class Slots extends React.Component {
         <Form.Input
           name="value"
           label="Field Value" 
-          type="text" 
+          type="text"
           onChange={this.handleOnChange}
         />
         <Button 
