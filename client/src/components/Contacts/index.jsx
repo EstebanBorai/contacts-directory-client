@@ -5,26 +5,36 @@ import DeleteContactModal from './DeleteContactModal';
 import ContactsList from './ContactsList';
 import PreviewContact from './PreviewContact';
 import EditContactModal from 'components/Contacts/EditContactModal';
-import { ContactsContext } from 'contexts';
+import { ContactsContext, AppContext } from 'contexts';
 
 const Contacts = () => (
-  <ContactsContext.Consumer>
-    {({ state }) => (
-      <section
-        className={
-          state.isPreviewing ? 'contacts-main split-2' : 'contacts-main'
-        }
-      >
-        <CreateContactModal />
-        <DeleteContactModal />
-        <EditContactModal />
-        <ContactsList />
-        {state.isPreviewing ? (
-          <PreviewContact contact={state.isPreviewing} />
-        ) : null}
-      </section>
+  <AppContext.Consumer>
+    {({ state: { error } }) => (
+      <ContactsContext.Consumer>
+        {({ state }) => (
+          <section
+            className={
+              state.isPreviewing
+                ? error
+                  ? 'contacts-main split-2 error-open'
+                  : 'contacts-main split-2'
+                : error
+                ? 'contacts-main error-open'
+                : 'contacts-main'
+            }
+          >
+            <CreateContactModal />
+            <DeleteContactModal />
+            <EditContactModal />
+            <ContactsList />
+            {state.isPreviewing ? (
+              <PreviewContact contact={state.isPreviewing} />
+            ) : null}
+          </section>
+        )}
+      </ContactsContext.Consumer>
     )}
-  </ContactsContext.Consumer>
+  </AppContext.Consumer>
 );
 
 export default Contacts;

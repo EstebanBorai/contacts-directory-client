@@ -9,3 +9,8 @@
   display: grid;
   grid-template-columns: 60% auto;
 }
+
+.contacts-main.error-open,
+.contacts-main.split-2.error-open {
+  height: calc(100vh - 100px);
+}
