@@ -10,7 +10,7 @@ const ContactListItem = ({ contact }) => (
     {({ state, actions }) => (
       <List.Item
         onClick={actions.setPreview.bind(null, contact)}
-        active={state.isPreviewing && state.isPreviewing.id === contact.id}
+        active={state.isPreviewing && state.isPreviewing === contact.id}
       >
         {contact.avatar !== null ? (
           <Image avatar src={contact.avatar} />

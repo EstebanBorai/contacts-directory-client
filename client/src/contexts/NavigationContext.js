@@ -1,8 +1,10 @@
 import React, { createContext } from 'react';
+import { AppContext } from 'contexts';
 
 const Context = createContext();
 
 class NavigationContext extends React.Component {
+  static contextType = AppContext.Consumer;
   static Consumer = Context.Consumer;
   static Provider = Context.Provider;
 
@@ -40,7 +42,9 @@ class NavigationContext extends React.Component {
         openDeleteModal: this.openDeleteModal,
         closeDeleteModal: this.closeDeleteModal,
         openEditingModal: this.openEditingModal,
-        closeEditingModal: this.closeEditingModal
+        closeEditingModal: this.closeEditingModal,
+        setLoading: this.context.actions.setLoading,
+        setError: this.context.actions.setError
       }
     }
 

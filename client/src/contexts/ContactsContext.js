@@ -2,14 +2,14 @@ import React, { createContext } from 'react';
 import ContactsAPI from 'api/ContactsAPI';
 import { Map } from 'immutable';
 import { normalize, schema } from 'normalizr';
-import AppContext from './AppContext';
+import NavigationContext from 'contexts/NavigationContext';
 
 const Context = createContext();
 
 class ContactsContext extends React.Component {
   static Consumer = Context.Consumer;
   static Provider = Context.Provider;
-  static contextType = AppContext.Consumer;
+  static contextType = NavigationContext.Consumer;
 
   constructor(props, context) {
     super(props, context);
@@ -41,18 +41,20 @@ class ContactsContext extends React.Component {
       const newContact = await this.api.create(contact);
       const next = this.state.contacts.set(newContact.id, newContact);
       this.setState({ contacts: next });
+      this.context.actions.closeAddingModal();
     } catch (error) {
       this.context.actions.setError(await error);
     }
   }
 
-  setPreview = contact => this.setState({ isPreviewing: contact });
+  setPreview = contact => this.setState({ isPreviewing: contact.id });
 
   update = async (id, contact) => {
     try {
       const edited = await this.api.update(id, contact);
       const next = this.state.contacts.set(edited.id, edited);
       this.setState({ contacts: next });
+      this.context.actions.closeEditingModal();
     } catch (error) {
       this.context.actions.setError(await error);
     }
@@ -62,7 +64,8 @@ class ContactsContext extends React.Component {
     try {
       const deleted = await this.api.delete(contact);
       const next = this.state.contacts.remove(deleted.id);
-      this.setState({ contacts: next });
+      this.setState({ contacts: next, isPreviewing: null });
+      this.context.actions.closeDeleteModal();
     } catch (error) {
       this.context.actions.setError(await error);
     }

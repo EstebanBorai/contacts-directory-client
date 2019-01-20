@@ -28,7 +28,9 @@ const Contacts = () => (
             <EditContactModal />
             <ContactsList />
             {state.isPreviewing ? (
-              <PreviewContact contact={state.isPreviewing} />
+              <PreviewContact
+                contact={state.contacts.get(state.isPreviewing)}
+              />
             ) : null}
           </section>
         )}

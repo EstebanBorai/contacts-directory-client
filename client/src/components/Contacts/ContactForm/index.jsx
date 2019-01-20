@@ -9,6 +9,7 @@ import Dates from './Dates';
 import { slotTypes, months as monthCollection } from './constants';
 import { ContactsContext } from 'contexts';
 import ContactOptions from './ContactOptions';
+import Avatar from './Avatar';
 
 class ContactForm extends React.Component {
   static contextType = ContactsContext.Consumer;
@@ -231,16 +232,7 @@ class ContactForm extends React.Component {
       />
       <Form onSubmit={this.handleSubmit}>
         <header className="form-header">
-          <div 
-            className="form-avatar-container" 
-            onClick={this.openAddingAvatar}
-          >
-            {   
-              form.avatar ?
-              <img src={form.avatar} /> :
-              null
-            }
-          </div>
+          <Avatar  avatar={form.avatar} onClick={this.openAddingAvatar} />
         </header>
         <Form.Input 
           name="firstName"
