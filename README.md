@@ -1,4 +1,10 @@
-# contacts
+<p align="center">  
+  <img 
+    src="https://raw.githubusercontent.com/estebanborai/contacts-directory/master/docs/contacts-logo-small.png" 
+    alt="contacts logo small"
+  />
+  <p>Contacts</p>
+</p>
 > 📘 A contacts directory app made with React.js and .NET Core
 
 <p align="center">  
