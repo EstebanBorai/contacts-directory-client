@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using ContactsDirectory.Core;
 using ContactsDirectory.Entity;
@@ -31,10 +32,21 @@ namespace ContactsDirectory.API
         {
             services.AddCors();
 
-            services.AddDbContext<ContactsDirectoryContext>(options =>
-                options.UseSqlite(Configuration.GetSection("Database").GetValue<string>("ConnectionString"),
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                services.AddDbContext<ContactsDirectoryContext>(options =>
+                options.UseSqlServer(Configuration.GetSection("Database").GetValue<string>("SqlServer"),
                     builder => builder.MigrationsAssembly("ContactsDirectory.API"))
                 );
+            }
+            else
+            {
+                services.AddDbContext<ContactsDirectoryContext>(options =>
+                options.UseSqlite(Configuration.GetSection("Database").GetValue<string>("Sqlite"),
+                    builder => builder.MigrationsAssembly("ContactsDirectory.API"))
+                );
+            }
+
             services.AddScoped<IDataSource>(ds => new ContactsDirectoryDataSource(ds.GetRequiredService<ContactsDirectoryContext>()));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
