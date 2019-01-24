@@ -76,11 +76,11 @@ class ContactForm extends React.Component {
           <Divider />
           <ul className="contact-dates">
             {
-              this.state.form.dates.map((date, index) => (
+              this.state.form.dates.map((dateItem, index) => (
                 <li key={index}>
-                  <span>{monthCollection[date.month - 1].text}</span>&nbsp;&#47;&nbsp;
-                  <span>{date.day}</span>&nbsp;&#47;&nbsp;
-                  <span>{date.year}</span>
+                  <span>{monthCollection[dateItem.date.getMonth()].text}</span>&nbsp;&#47;&nbsp;
+                  <span>{dateItem.date.getDate()}</span>&nbsp;&#47;&nbsp;
+                  <span>{dateItem.date.getFullYear()}</span>
                 </li>
               ))
             }
@@ -149,16 +149,14 @@ class ContactForm extends React.Component {
    * @param {number} date.month - Month number.
    * @param {number} date.year - Year.
    */
-  addDate = ({ day, month, year }) => {
+  addDate = ({ date, name }) => {
     const next = {
       ...this.state,
         isAddingDate: false,
         form: {
         ...this.state.form, dates: [
           ...this.state.form.dates, {
-            day: Number(day), 
-            month,
-            year: Number(year)
+            date, name
           }
         ]
       }

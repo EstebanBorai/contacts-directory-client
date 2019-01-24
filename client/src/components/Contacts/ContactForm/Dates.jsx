@@ -95,7 +95,7 @@ class Dates extends React.Component {
         </Form.Group>
         <Button 
           primary
-          onClick={onSelect.bind(null, { day, month, year, name })}
+          onClick={onSelect.bind(null, { date: new Date(`${month}/${day}/${year}`), name })}
           disabled={day > maxDays}
         >
           Confirm
