@@ -3,6 +3,7 @@ import { List, Message } from 'semantic-ui-react';
 import ContactListItem from './ContactListItem';
 import { ContactsContext, NavigationContext } from 'contexts';
 import FavoriteContacts from './FavoriteContacts';
+import FilterWrapper from './FilterWrapper';
 
 class AllContacts extends React.Component {
   render() {
@@ -11,22 +12,33 @@ class AllContacts extends React.Component {
         <NavigationContext.Consumer>
           {({ state }) => (state.showFavorites ? <FavoriteContacts /> : null)}
         </NavigationContext.Consumer>
-        <List relaxed selection verticalAlign="middle">
-          <ContactsContext.Consumer>
-            {({ state }) =>
-              state.contacts && state.contacts.size > 0 ? (
-                state.contacts
-                  .valueSeq()
-                  .map((contact, index) => (
-                    <ContactListItem contact={contact} key={index} />
-                  ))
-                  .toArray()
-              ) : (
-                <Message>There&#39;s no contacts to show</Message>
-              )
+        <ContactsContext.Consumer>
+          {({ state }) => {
+            if (state.isFiltering) {
+              return (
+                <FilterWrapper
+                  filterCondition={state.filterQuery}
+                  results={state.isFiltering}
+                />
+              );
+            } else {
+              return (
+                <List relaxed selection verticalAlign="middle">
+                  {state.contacts && state.contacts.size > 0 ? (
+                    state.contacts
+                      .valueSeq()
+                      .map((contact, index) => (
+                        <ContactListItem contact={contact} key={index} />
+                      ))
+                      .toArray()
+                  ) : (
+                    <Message>There&#39;s no contacts to show</Message>
+                  )}
+                </List>
+              );
             }
-          </ContactsContext.Consumer>
-        </List>
+          }}
+        </ContactsContext.Consumer>
       </React.Fragment>
     );
   }

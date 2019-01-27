@@ -3,6 +3,7 @@ import ContactsAPI from 'api/ContactsAPI';
 import { Map } from 'immutable';
 import { normalize, schema } from 'normalizr';
 import NavigationContext from 'contexts/NavigationContext';
+import filterContacts from 'helpers/filterContacts';
 
 const Context = createContext();
 
@@ -16,7 +17,9 @@ class ContactsContext extends React.Component {
 
     this.state = {
       contacts: null,
-      isPreviewing: null
+      isPreviewing: null,
+      isFiltering: null,
+      filterQuery: ''
     }
 
     this.api = new ContactsAPI();
@@ -47,7 +50,7 @@ class ContactsContext extends React.Component {
     }
   }
 
-  setPreview = contact => this.setState({ isPreviewing: contact.id });
+  setPreview = contact => this.setState({ isPreviewing: contact.id, isFiltering: null, filterQuery: '' });
 
   update = async (id, contact) => {
     try {
@@ -71,6 +74,22 @@ class ContactsContext extends React.Component {
     }
   }
 
+  filterContacts = query => {
+    const all = this.state.contacts;
+    if (query) {
+      this.setState({
+        filterQuery: query,
+        isPreviewing: null,
+        isFiltering: all.filter(c => filterContacts(c, query))
+      });
+    } else {
+      this.setState({
+        filterQuery: query,
+        isFiltering: null
+      });
+    }
+  }
+
   render() {
     const { children } = this.props;
     const contextValue = {
@@ -81,7 +100,8 @@ class ContactsContext extends React.Component {
         update: this.update,
         remove: this.remove,
         setPreview: this.setPreview,
-        editSlot: this.editSlot
+        editSlot: this.editSlot,
+        filterContacts: this.filterContacts
       }
     }
 

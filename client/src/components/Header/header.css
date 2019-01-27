@@ -62,3 +62,7 @@
   color: #1b1b1b;
   cursor: pointer;
 }
+
+.disabled {
+  cursor: not-allowed !important;
+}
