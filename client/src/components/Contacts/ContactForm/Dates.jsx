@@ -22,7 +22,7 @@ class Dates extends React.Component {
     day: 0,
     month: 0,
     year: 0,
-    name: ''
+    label: ''
   }
 
   handleOnChange = (e, { name, value }) => this.setState({ [name]: value });
@@ -55,16 +55,16 @@ class Dates extends React.Component {
 
   render() {
     const { onSelect, onCancel } = this.props;
-    const { day, month, year, maxDays, name } = this.state;
+    const { day, month, year, maxDays, label } = this.state;
     return (
       <div>
       <Form.Group widths="equal">
         <Form.Input
           fluid
           label="Label"
-          name="name"
+          name="label"
           onChange={this.handleOnChange}
-          value={name}
+          value={label}
         />
         <Form.Select
           fluid
@@ -95,7 +95,7 @@ class Dates extends React.Component {
         </Form.Group>
         <Button 
           primary
-          onClick={onSelect.bind(null, { dateValue: new Date(`${month}/${day}/${year}`), name })}
+          onClick={onSelect.bind(null, { dateValue: new Date(`${month}/${day}/${year}`), label })}
           disabled={day > maxDays}
         >
           Confirm

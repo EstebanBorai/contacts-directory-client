@@ -4,6 +4,12 @@
   border-left: 1px solid #e4e2e2;
   text-align: center;
   position: relative;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .contact-fullname {
@@ -46,14 +52,26 @@
   box-sizing: border-box;
 }
 
+.preview-subtitle {
+  text-transform: uppercase;
+  font-size: .9rem;
+  color: #8f8d8d;
+}
+
 .contact-slot {
   padding: .45rem;
   box-sizing: border-box;
 
-  em {
-    padding-bottom: .5rem;
-    box-sizing: border-box;
+  &:hover {
+    background: #cce2ff;
+    border-radius: .25rem;
+    cursor: pointer;
   }
+}
+
+.contact-date {
+  padding: .45rem;
+  box-sizing: border-box;
 
   &:hover {
     background: #cce2ff;

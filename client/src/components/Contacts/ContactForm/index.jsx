@@ -10,6 +10,7 @@ import { slotTypes, months as monthCollection } from './constants';
 import { ContactsContext } from 'contexts';
 import ContactOptions from './ContactOptions';
 import Avatar from './Avatar';
+import '../PreviewContact/preview-contact.scss';
 
 class ContactForm extends React.Component {
   static contextType = ContactsContext.Consumer;
@@ -56,8 +57,8 @@ class ContactForm extends React.Component {
                 <li key={index}>
                   {
                     slot.type === 9 ?
-                    <h4>{slot.customSlotType}</h4> :
-                    <h4>{slotTypes[slot.type].text}</h4>
+                    <span className="preview-subtitle">{slot.customSlotType}</span> :
+                    <span className="preview-subtitle">{slotTypes[slot.type].text}</span>
                   }
                   <p>{slot.value}</p>
                 </li>
@@ -80,6 +81,7 @@ class ContactForm extends React.Component {
                 const dateValue = new Date(dateItem.dateValue);
                 return (
                   <li key={index}>
+                    <span className="preview-subtitle">{dateItem.label}</span><br />
                     <span>{monthCollection[dateValue.getMonth()].text}</span>&nbsp;&#47;&nbsp;
                     <span>{dateValue.getDate()}</span>&nbsp;&#47;&nbsp;
                     <span>{dateValue.getFullYear()}</span>
@@ -152,14 +154,14 @@ class ContactForm extends React.Component {
    * @param {number} date.month - Month number.
    * @param {number} date.year - Year.
    */
-  addDate = ({ dateValue, name }) => {
+  addDate = ({ dateValue, label }) => {
     const next = {
       ...this.state,
         isAddingDate: false,
         form: {
         ...this.state.form, dates: [
           ...this.state.form.dates, {
-            dateValue, name
+            dateValue, label
           }
         ]
       }

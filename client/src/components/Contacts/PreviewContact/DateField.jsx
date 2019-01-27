@@ -5,9 +5,12 @@ import { months } from 'components/Contacts/ContactForm/constants';
 const DateField = ({ date }) => {
   const dateObj = new Date(date.dateValue);
   return (
-    <li>
-      {dateObj.getDate()} {months[dateObj.getMonth()].text}
-      {dateObj.getFullYear()}
+    <li className="contact-date">
+      <span className="preview-subtitle">{date.label}</span>
+      <br />
+      <span>{months[dateObj.getMonth()].text}</span>&nbsp;&#47;&nbsp;
+      <span>{dateObj.getDate()}</span>&nbsp;&#47;&nbsp;
+      <span>{dateObj.getFullYear()}</span>
     </li>
   );
 };

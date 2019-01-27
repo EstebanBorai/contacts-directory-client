@@ -7,14 +7,11 @@ import './preview-contact.scss';
 const Slot = ({ slot }) => (
   <li className="contact-slot">
     {slot.type === 9 ? (
-      <em>{slot.customSlotType}</em>
+      <span className="preview-subtitle">{slot.customSlotType}</span>
     ) : (
-      <em>{slotTypes[slot.type].text}</em>
+      <span className="preview-subtitle">{slotTypes[slot.type].text}</span>
     )}
     <p>
-      <span className="icon-container">
-        <Icon name="phone" />
-      </span>
       <span>{slot.value}</span>
     </p>
   </li>
