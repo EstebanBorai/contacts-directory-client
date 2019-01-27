@@ -6,7 +6,7 @@ const DateField = ({ date }) => {
   const dateObj = new Date(date.dateValue);
   return (
     <li>
-      {dateObj.getDay()} {months[dateObj.getMonth()].text}
+      {dateObj.getDate()} {months[dateObj.getMonth()].text}
       {dateObj.getFullYear()}
     </li>
   );
