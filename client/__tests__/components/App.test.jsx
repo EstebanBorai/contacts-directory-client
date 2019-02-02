@@ -1,17 +1,10 @@
 import React from 'react';
-import App from 'components/App';
 import { shallow } from 'enzyme';
-import Header from 'components/Header';
-import Contacts from 'components/Contacts';
+import App from 'components/App';
 
-describe('App renderization', () => {
-  it('should render Header', () => {
-    const app = shallow(<App />);
-    expect(app.find(Header).exists()).toBe(true);
-  });
-  
-  it('should render Contacts', () => {
-    const app = shallow(<App />);
-    expect(app.find(Contacts).exists()).toBe(true);
+describe('<App />', () => {
+  it('renders without crashing', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.exists('AppContext')).toBe(true);
   });
 });

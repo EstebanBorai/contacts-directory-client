@@ -1,24 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Loading from 'components/lib/Loading';
 
-describe('test loading component', () => {
-  let props;
-
-  beforeEach(() => {
-    props = {
-      onSelect: jest.fn()
-    };
-    slots = shallow(<Slots {...props} />);
+describe('<Loading />', () => {
+  it('renders without a loading icon if context state "loading" is false', () => {
+    const context = { state: { loading: false } };
+    const wrapper = mount(<Loading />, context);
+    expect(wrapper.exists('Loader')).toBe(false);
   });
 
-  it('should render a div element', () => {
-    expect(slots.find('div').exists()).toBe(true);
-  });
-
-  it('should setFieldType', () => {
-    const value = 9;
-    slots.instance().setFieldType(null, { value });
-    expect(slots.state('fieldType')).toBe(9);
+  it('renders a loading icon when "loading" state is true', () => {
+    const wrapper = shallow(<Loading />);
+    expect(wrapper.exists('Loader')).toBe(true);
   });
 });

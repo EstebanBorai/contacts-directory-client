@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { AppContext } from 'contexts';
@@ -36,5 +37,9 @@ const Loading = () => (
     </AppContext.Consumer>
   </ReactCSSTransitionGroup>
 );
+
+Loading.contextTypes = {
+  state: PropTypes.object
+};;
 
 export default Loading;
