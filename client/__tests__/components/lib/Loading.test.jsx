@@ -1,10 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Slots from 'components/Contacts/ContactForm/Slots';
+import Loading from 'components/lib/Loading';
 
-describe('Contacts/ContactForm/Slots renderization and usage', () => {
+describe('test loading component', () => {
   let props;
-  let slots;
 
   beforeEach(() => {
     props = {
@@ -22,10 +21,4 @@ describe('Contacts/ContactForm/Slots renderization and usage', () => {
     slots.instance().setFieldType(null, { value });
     expect(slots.state('fieldType')).toBe(9);
   });
-
-  // it('update field values', () => {
-  //   const event = { target: { name: 'customSlotType', value: 'test' } };
-  //   slots.simulate('change', event);
-  //   expect(slots.state('customSlotType')).toBe('test');
-  // });
 });

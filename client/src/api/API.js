@@ -1,6 +1,6 @@
 class API {
   constructor(controller) {
-    this.url = API_URL && API_URL.concat(controller); // eslint-disable-line
+    this.url =  window.__contacts__API__URL || (API_URL && API_URL.concat(controller)); // eslint-disable-line
   }
 
   /**
