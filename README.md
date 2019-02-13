@@ -4,7 +4,7 @@
     alt="contacts logo small"
   />
   <h1 align="center">Contacts</h1>
-  <p align="center">📘 A contacts directory app made with React.js and .NET Core</p>
+  <p align="center">📘 A contacts directory app made with ⚛ React.js and 🐱 💻 .NET Core</p>
 </p>
 <p align="center">  
   <img
