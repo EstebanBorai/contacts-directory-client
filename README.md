@@ -1,6 +1,6 @@
 <p align="center">  
   <img 
-    src="https://raw.githubusercontent.com/estebanborai/contacts-directory/master/docs/contacts-logo-small.png" 
+    src="https://raw.githubusercontent.com/gitpullsh/contacts-directory/master/docs/contacts-logo-small.png" 
     alt="contacts logo small"
   />
   <h1 align="center">Contacts</h1>
@@ -8,7 +8,7 @@
 </p>
 <p align="center">  
   <img
-    src="https://raw.githubusercontent.com/estebanborai/contacts-directory/master/docs/screenshot.png" 
+    src="https://raw.githubusercontent.com/gitpullsh/contacts-directory/master/docs/screenshot.png" 
     alt="screenshot"
   />
 </p>
@@ -22,7 +22,7 @@ The client side interacts with the server through HTTP requests and renders the 
 
 <p align="center">  
   <img
-    src="https://raw.githubusercontent.com/estebanborai/contacts-directory/master/docs/architecture_%20diagram.png" 
+    src="https://raw.githubusercontent.com/gitpullsh/contacts-directory/master/docs/architecture_%20diagram.png" 
     alt="contacts directory architecture"
   />
 </p>
