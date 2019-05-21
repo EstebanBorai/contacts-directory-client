@@ -62,7 +62,7 @@ namespace ContactsDirectory.API
                     {
                         Name = "Esteban Borai",
                         Email = string.Empty,
-                        Url = "https://github.com/gitpullsh"
+                        Url = "https://github.com/estebanborai"
                     },
                     License = new License
                     {
