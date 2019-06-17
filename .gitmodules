@@ -1,0 +1,3 @@
+[submodule "contacts-directory-server"]
+	path = contacts-directory-server
+	url = https://github.com/estebanborai/contacts-directory-server.git
