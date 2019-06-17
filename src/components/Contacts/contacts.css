@@ -1,0 +1,16 @@
+.contacts-main {
+  padding: .7rem 0;
+  box-sizing: border-box;
+  height: calc(100vh - 52px);
+  width: 100%;
+}
+
+.split-2 {
+  display: grid;
+  grid-template-columns: 60% auto;
+}
+
+.contacts-main.error-open,
+.contacts-main.split-2.error-open {
+  height: calc(100vh - 100px);
+}
