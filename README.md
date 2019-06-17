@@ -13,10 +13,19 @@
   />
 </p>
 
-## Motivation
+### Motivation
 Use .NET Core to create a WebAPI.
 
-## Architecture
+### Getting Started
+```bash
+# install dependencies
+yarn
+
+# run development server
+yarn start
+```
+
+### Architecture
 Contacts app uses a client made with React.js with a server made with .NETCore which connects to a SQLite database.
 The client side interacts with the server through HTTP requests and renders the UI based on the received data.
 
@@ -26,13 +35,3 @@ The client side interacts with the server through HTTP requests and renders the 
     alt="contacts directory architecture"
   />
 </p>
-
-## API
-API documentation is made with Swagger. You can use it following these steps:
-Run:
-```bash
-dotnet run ./server/ContactsDirectory.API
-```
-Then open one of the following links in your browser:
-- HTTPS: https://localhost:5001/swagger/index.html
-- HTTP: http://localhost:5000/swagger/index.html
